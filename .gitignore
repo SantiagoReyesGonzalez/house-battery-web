@@ -1,0 +1,13 @@
+# Archivos de sistema operativo (Basura)
+.DS_Store
+Thumbs.db
+
+# Logs y bases de datos locales
+*.log
+
+# Carpetas de dependencias (por si usas Node.js en el futuro)
+node_modules/
+dist/
+
+# Archivos de entorno (Claves secretas)
+.env
