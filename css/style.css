@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* =========================================
+   SISTEMA DE DISEÑO (DESIGN SYSTEM)
+   ========================================= */
+:root {
+    --neutral-950: hsl(240, 6%, 10%);
+    --neutral-900: hsl(240, 6%, 14%);
+    --neutral-800: hsl(240, 6%, 20%);
+    --neutral-200: hsl(240, 6%, 80%);
+    --neutral-50:  hsl(0, 0%, 100%);
+
+    --brand-400: hsl(48, 100%, 60%);
+    --brand-500: hsl(48, 100%, 50%);
+    --brand-600: hsl(48, 100%, 40%);
+
+    --space-sm:  0.5rem;
+    --space-md:  1rem;
+    --space-lg:  2rem;
+    --space-xl:  4rem;
+    
+    --container-width: 1100px;
+
+    --bg-body:       var(--neutral-950);
+    --bg-card:       var(--neutral-900);
+    --text-main:     var(--neutral-50);
+    --text-muted:    var(--neutral-200);
+    --color-primary: var(--brand-500);
+
+    --font-main: 'Montserrat', sans-serif;
+}
+
+/* =========================================
+   RESET BÁSICO
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    padding-bottom: var(--space-xl);
+}
+
+/* =========================================
+   BLOQUE: HEADER (.header)
+   ========================================= */
+.header {
+    text-align: center;
+    padding: var(--space-md) 0;
+}
+
+/* Elemento: Logo */
+.header__logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: var(--space-sm);
+}
+
+/* =========================================
+   BLOQUE: NAV (.nav)
+   ========================================= */
+/* Elemento: Lista de navegación */
+.nav__list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+/* Elemento: Enlace de navegación */
+.nav__link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+/* Modificador de estado (pseudo-clase) */
+.nav__link:hover {
+    color: var(--color-primary);
+}
+
+/* =========================================
+   COMPONENTES: BOTONES (.btn)
+   ========================================= */
+.btn {
+    display: inline-block;
+    padding: var(--space-md) var(--space-lg);
+    width: 90%;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    
+    margin-right: var(--space-sm); 
+    margin-bottom: var(--space-sm);
+}
+
+/* Modificador: Botón Primario */
+.btn--primary {
+    background-color: var(--brand-500);
+    color: var(--neutral-950);
+}
+
+.btn--primary:hover {
+    background-color: var(--brand-400);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 214, 0, 0.3);
+}
+
+/* Modificador: Botón Secundario (Ejemplo opcional) */
+.btn--secondary {
+    background-color: transparent;
+    border: 2px solid var(--brand-600);
+    color: var(--brand-500);
+}
+
+.btn--secondary:hover {
+    background-color: var(--brand-400);
+    color: var(--neutral-950);
+}
+
+/* =========================================
+   BLOQUE: HERO (.hero)
+   ========================================= */
+.hero {
+    /* Layout y Estilos Base */
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-xl);
+
+    /* Fondo */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../assets/img/taller-fondo.webp');
+    background-size: cover;
+    background-position: center;
+    color: var(--text-main);
+}
+
+/* Elemento: Título del Hero */
+.hero__title {
+    font-size: var(--space-lg);
+    margin-bottom: var(--space-md);
+    max-width: 800px;
+}
+
+/* Elemento: Descripción del Hero */
+.hero__description {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-lg);
+    max-width: 600px;
+    color: var(--neutral-200);
+}

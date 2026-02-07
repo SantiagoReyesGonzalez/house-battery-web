@@ -3,57 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>House Battery</title>
-    
     <meta name="description" content="House Battery Bogotá: Soldadura de punto y reparación de baterías para patinetas, UPS, herramientas y todo equipo. Componentes y proyectos estudiantiles.">
-
     <meta name="keywords" content="reparación de baterías Bogotá, soldadura de punto baterías litio Bogotá, reparación batería patineta eléctrica, cambio batería UPS, empaquetado celdas 18650, reparación baterías herramientas, baterías recargables Bogotá, House Battery Bogotá">
-    
-    </head>
+</head>
 <body>
-    <header>
-        <img src="assets/img/logo-icono.webp" alt="Logo de house battery">
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+
+    <header class="header">
+        <img class="header__logo" src="assets/img/logo-icono.webp" alt="Logo de house battery">
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="#inicio" class="nav__link">Inicio</a></li>
+                <li class="nav__item"><a href="#servicios" class="nav__link">Servicios</a></li>
+                <li class="nav__item"><a href="#contacto" class="nav__link">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="inicio">
-            <h1>House Battery <strong>Centro Tecnológico de Baterías y Proyectos Electrónicos</strong></h1>
-            <p>
+        <section id="inicio" class="hero">
+            <h1 class="hero__title">House Battery <strong>Centro Tecnológico de Baterías y Proyectos Electrónicos</strong></h1>
+            <p class="hero__description">
                 Especialistas en <strong>soldadura de punto</strong> y ensamble de baterías de Litio a medida. Restauramos la energía de tu patineta o herramienta. Además, contamos con <strong>Línea Estudiantil</strong> para <strong>diseño de proyectos</strong> y venta de instrumentación.
             </p>
-            <a href="#">Cotizar Batería</a>
-            <a href="#">Asesoría Estudiantil</a>
+            <div class="hero__actions">
+                <a class="btn btn--primary" href="#">Cotizar Batería</a>
+                <a class="btn btn--secondary" href="#">Asesoría Estudiantil</a>
+            </div>
         </section>
 
-        <section id="marcas">
-            <h2>Repuestos originales</h2>
-            <ul>
-                <li>Energizer</li>
-                <li>GP Batteries</li>
-                <li>Netion</li>
+        <section id="marcas" class="brands">
+            <h2 class="brands__title">Repuestos originales</h2>
+            <ul class="brands__list">
+                <li class="brands__item">Energizer</li>
+                <li class="brands__item">GP Batteries</li>
+                <li class="brands__item">Netion</li>
             </ul>
         </section>
 
-        <section id="servicios">
-            <h2>Nuestros Servicios</h2>
-            <article>
-                <h3>UPS, Pilas e Iluminación</h3>
-                <img src="assets/img/favicon.webp" alt="Pilas recargables y ups">
-                <p>Venta y cambio de batería para <strong>UPS y sistemas de respaldo</strong></p>
-                <p>Amplio stock de pilas de botón, baterías alcalinas y recargables.</p>
+        <section id="servicios" class="services">
+            <h2 class="services__heading">Nuestros Servicios</h2>
+            
+            <article class="service-card">
+                <h3 class="service-card__title">UPS, Pilas e Iluminación</h3>
+                <img class="service-card__img" src="assets/img/favicon.webp" alt="Pilas recargables y ups">
+                <div class="service-card__content">
+                    <p>Venta y cambio de batería para <strong>UPS y sistemas de respaldo</strong></p>
+                    <p>Amplio stock de pilas de botón, baterías alcalinas y recargables.</p>
+                </div>
             </article>
             
-            <article>
-                <h3>Ensamble y Restauración de Baterías</h3>
-                <img src="assets/img/favicon.webp" alt="Batería recargable ensamblada de alta calidad">
-                <ul>
+            <article class="service-card">
+                <h3 class="service-card__title">Ensamble y Restauración de Baterías</h3>
+                <img class="service-card__img" src="assets/img/favicon.webp" alt="Batería recargable ensamblada">
+                <ul class="service-card__list">
                     <li>Fabricación profesional de packs de baterías.</li>
                     <li>Reparación de baterías de <strong>patinetas y bicicletas eléctricas</strong>.</li>
                     <li>Revitalizamos taladros y equipos inalámbricos.</li>
@@ -61,10 +65,10 @@
                 </ul>
             </article>
 
-            <article>
-                <h3>Proyectos Electrónicos y Herramientas</h3>
-                <img src="assets/img/favicon.webp" alt="Proyecto electronico de carro elaborado en arduino">
-                <ul>
+            <article class="service-card">
+                <h3 class="service-card__title">Proyectos Electrónicos y Herramientas</h3>
+                <img class="service-card__img" src="assets/img/favicon.webp" alt="Proyecto electronico">
+                <ul class="service-card__list">
                     <li>Todo para el estudiante de ingeniería y electrónica.</li>
                     <li>Diseño y montaje de proyectos (Arduino, robótica).</li>
                     <li>Venta de multímetros y cautines.</li>
@@ -72,43 +76,49 @@
             </article>
         </section>
 
-        <section id="nosotros">
-            <h2>Más que una Tienda, un Laboratorio de Energía</h2>
-            <p>
-                Ubicados en el corazón de la tecnología en <strong>Bogotá (Calle 21)</strong>, House Battery se diferencia por su capacidad técnica. Contamos con maquinaria de <strong>soldadura por puntos</strong> para garantizar ensambles seguros.
-            </p>
-            <p>
-                Somos el punto de encuentro para <strong>ingenieros y estudiantes</strong>. Ya sea para revivir tu Scooter Eléctrico o conseguir componentes, aquí tienes la solución.
-            </p>
+        <section id="nosotros" class="about">
+            <h2 class="about__title">Más que una Tienda, un Laboratorio de Energía</h2>
+            <div class="about__content">
+                <p>Ubicados en el corazón de la tecnología en <strong>Bogotá (Calle 21)</strong>...</p>
+                <p>Somos el punto de encuentro para <strong>ingenieros y estudiantes</strong>...</p>
+            </div>
         </section>
 
-        <section id="contacto">
-            <h2>Contáctanos</h2>
-            <form action="#">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required>
+        <section id="contacto" class="contact">
+            <h2 class="contact__title">Contáctanos</h2>
+            <form action="#" class="contact__form">
+                <div class="form-group">
+                    <label for="nombre" class="form-group__label">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" class="form-group__input" required>
+                </div>
                 
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono" required>
+                <div class="form-group">
+                    <label for="telefono" class="form-group__label">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" class="form-group__input" required>
+                </div>
                 
-                <label for="correo">Correo</label>
-                <input type="email" id="correo" name="correo" required>
+                <div class="form-group">
+                    <label for="correo" class="form-group__label">Correo</label>
+                    <input type="email" id="correo" name="correo" class="form-group__input" required>
+                </div>
                 
-                <label for="mensaje">Mensaje</label>
-                <textarea name="mensaje" id="mensaje" required></textarea>
+                <div class="form-group">
+                    <label for="mensaje" class="form-group__label">Mensaje</label>
+                    <textarea name="mensaje" id="mensaje" class="form-group__textarea" required></textarea>
+                </div>
                 
-                <button type="submit">Enviar Mensaje</button>
+                <button type="submit" class="btn btn--primary">Enviar Mensaje</button>
             </form>
         </section>
     </main>
     
-    <footer>
-        <h3>Datos de Contacto</h3>
-        <address>
-            <ul>
-                <li>Dirección: Calle 21 No. 8-58, Bogotá D.C.</li>
-                <li>WhatsApp: 313 801 9357 / 320 266 0295</li>
-                <li>Email: housebatterygpd@gmail.com</li>
+    <footer class="footer">
+        <h3 class="footer__title">Datos de Contacto</h3>
+        <address class="footer__address">
+            <ul class="footer__list">
+                <li class="footer__item">Dirección: Calle 21 No. 8-58, Bogotá D.C.</li>
+                <li class="footer__item">WhatsApp: 313 801 9357 / 320 266 0295</li>
+                <li class="footer__item">Email: housebatterygpd@gmail.com</li>
             </ul>
         </address>
     </footer>
