@@ -206,55 +206,261 @@ button, input, select,textarea{
 }
 
 /* =========================================
+   SECCIÓN DE MARCAS (Logos o Nombres)
+   ========================================= */
+.brands {
+    background-color: var(--neutral-950);
+    padding: var(--space-lg) 0;
+    text-align: center;
+    border-bottom: 1px solid var(--neutral-800); /* Una línea sutil para separar */
+}
+
+.brands__title {
+    color: var(--brand-500); /* Cambiémoslo a DORADO para que resalte más */
+    font-size: 1.5rem;       /* <--- Aumentamos a un tamaño más decente (aprox 24px) */
+    font-weight: 700;        /* Negrita para que tenga peso */
+    text-transform: uppercase;
+    letter-spacing: 3px;     /* Un poco más de aire entre letras */
+    margin-bottom: var(--space-lg); /* Más separación con los logos */
+}
+
+/* =========================================
+   CORRECCIÓN DE LOGOS (MARCAS)
+   ========================================= */
+
+/* 1. La lista contenedora */
+.brands__list {
+    list-style: none;
+    padding: 0 ;
+    display: flex;
+    flex-wrap: wrap;         /* Permite que bajen si no caben */
+    justify-content: center; /* Centrados horizontalmente */
+    align-items: center;     /* Centrados verticalmente */
+    gap: var(--space-xl);    /* Espacio entre logos */
+}
+
+/* 2. El item de la lista (la caja invisible) */
+.brands__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 3. LA IMAGEN (Aquí está el truco para que no sean gigantes) */
+.brands__img {
+    height: 40px;        
+    width: auto;         
+    object-fit: contain; 
+    border-radius: 4px;
+    
+    /* --- EL NUEVO TRUCO --- */
+    /* 1. Los volvemos blanco y negro (grayscale) */
+    /* 2. Invertimos los colores (invert): Lo negro se vuelve blanco */
+    /* 3. Le bajamos un poco la intensidad (opacity) */
+    filter: grayscale(100%) invert(1) opacity(0.8); 
+    
+    transition: all 0.3s ease;
+    /* ¡ASEGÚRATE DE BORRAR LA LÍNEA DE 'mix-blend-mode' SI AÚN LA TIENES! */
+}
+
+/* Efecto al pasar el mouse */
+.brands__img:hover {
+    /* Al pasar el mouse, quitamos el filtro para que se vean a color normal */
+    filter: grayscale(0%) invert(0) opacity(1);
+    transform: scale(1.1);
+}
+
+/* =========================================
    DÍA 4: LAYOUT DE SERVICIOS (GRID)
    ========================================= */
 
-/* Mobile First: Por defecto una columna (ya lo hace el navegador), 
-   pero preparamos el contenedor */
+/* =========================================
+   SECCIÓN SERVICIOS (Rediseño Grid Centrado)
+   ========================================= */
 .services {
     padding: var(--space-xl) var(--space-md);
-    background-color: var(--neutral-900); /* Fondo un poco más claro que el body */
+    background-color: var(--neutral-900); /* Fondo base */
+    
+    /* TRUCO PARA CENTRAR EL GRID: */
+    /* Definimos un ancho máximo y márgenes automáticos */
+    max-width: 1200px; 
+    margin: 0 auto; 
+    
+    /* Configuración del Grid */
+    display: grid;
+    /* Esto crea columnas de mínimo 300px que llenan el espacio */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: var(--space-lg);
+}
+
+.services__heading {
+    grid-column: 1 / -1; /* El título ocupa todo el ancho */
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--text-main);
+    margin-bottom: var(--space-xl);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   DISEÑO "TECH GRID" (Estilo Moderno)
+   ========================================= */
+/* =========================================
+   SERVICIOS - MOBILE FIRST (Base)
+   ========================================= */
+.services {
+    background-color: var(--neutral-950);
+    padding: var(--space-xl) var(--space-md); /* Buen padding para que no se pegue a los bordes */
     text-align: center;
 }
 
 .services__heading {
-    margin-bottom: var(--space-lg);
     font-size: 2rem;
-    color: var(--brand-500);
-}
-
-/* Las Tarjetas Individuales */
-.service-card {
-    background-color: var(--neutral-950); /* Tarjeta oscura */
-    border: 1px solid var(--neutral-800);
-    border-radius: 12px;
-    padding: var(--space-md);
-    margin-bottom: var(--space-md); /* Separación en móvil */
-    transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-    border-color: var(--brand-500); /* Borde amarillo al pasar mouse */
-    transform: translateY(-5px);    /* Efecto flotante */
-}
-
-.service-card__img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; /* Recorta la imagen para que no se deforme */
-    border-radius: 8px;
-    margin-bottom: var(--space-md);
-}
-
-.service-card__title {
     color: var(--text-main);
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.service-card__list {
+/* CONTENEDOR DE TARJETAS (MÓVIL) */
+.services__container {
+    display: flex;
+    flex-direction: column; /* Una debajo de la otra */
+    gap: var(--space-md);   /* Separación entre tarjetas */
+}
+
+/* LA TARJETA (DISEÑO MÓVIL) */
+.tech-card {
+    background-color: var(--neutral-900); /* Fondo oscuro simple */
+    border: 1px solid var(--neutral-800); /* Borde sutil */
+    border-radius: 12px;
+    padding: var(--space-lg);
+    text-align: left; /* Alineado a la izquierda para mejor lectura */
+    
+    /* Sombra suave para separar del fondo */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* ICONO */
+.tech-card__icon {
+    color: var(--brand-500);      /* Amarillo House Battery */
+    margin-bottom: var(--space-md);
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo muy sutil */
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.tech-card__title {
+    color: var(--text-main);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.tech-card__desc {
+    color: var(--neutral-200);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* =========================================
+   SECCIÓN NOSOTROS (Estilo Tesla Split)
+   ========================================= */
+.about {
+    background-color: var(--neutral-950); /* Fondo oscuro premium */
+    padding: var(--space-xl) var(--space-md);
+}
+
+.about__container {
+    max-width: 1100px; /* Ancho máximo para que no se estire infinito */
+    margin: 0 auto;
+    
+    /* ACTIVAMOS EL GRID (LA MAGIA) */
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center; /* Centra verticalmente texto vs imagen */
+}
+
+/* 1. LA IMAGEN */
+.about__image-container {
+    width: 100%;
+    height: 400px; /* Altura fija para que se vea imponente */
+    border-radius: 12px;
+    overflow: hidden; /* Recorta la imagen si se sale */
+    border: 1px solid var(--neutral-800);
+}
+
+.about__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que la foto llene el cuadro sin deformarse */
+    transition: transform 0.5s ease;
+}
+
+.about__image-container:hover .about__img {
+    transform: scale(1.05); /* Efecto zoom sutil al pasar el mouse (muy Tesla) */
+}
+
+/* 2. EL TEXTO */
+.about__content {
     text-align: left;
-    padding-left: var(--space-md);
+}
+
+.about__title {
+    font-size: 2.5rem; /* Título GIGANTE */
+    line-height: 1.1;
+    color: var(--text-main);
+    margin-bottom: var(--space-md);
+    letter-spacing: -1px; /* Letras un poco más juntas (estilo moderno) */
+}
+
+.about__subtitle {
+    font-size: 1.2rem;
+    color: var(--brand-500); /* Dorado */
+    margin-bottom: var(--space-md);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.about__text {
     color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    font-size: 1.05rem;
+}
+
+/* 3. CARACTERÍSTICAS (Iconos pequeños) */
+.about__features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+.feature-icon {
+    font-size: 1.2rem;
+}
+
+/* 4. LA CITA (Más sutil ahora) */
+.about__quote {
+    border-left: 3px solid var(--brand-500);
+    padding-left: var(--space-md);
+    color: var(--neutral-200);
+    font-style: italic;
 }
 
 
@@ -417,6 +623,9 @@ button, input, select,textarea{
         gap: var(--space-lg);     /* Más espacio entre enlaces porque tenemos pantalla de sobra */
         margin-top: 0;            /* Ya no necesitamos el margen de arriba */
     }
+    .nav__toggle {
+        display: none; 
+    }
     .hero__title {
         font-size: 3.5rem; /* <--- De 32px pasa a unos 56px. ¡Ahora sí impone respeto! */
     }
@@ -424,21 +633,63 @@ button, input, select,textarea{
         font-size: 1.2rem; /* El texto del párrafo también crece un poco para leerse mejor */
     }
     .services {
-        /* Activamos la Grilla */
-        display: grid;
-        /* Esto crea columnas automáticas que miden mínimo 300px */
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-        gap: var(--space-lg); /* Espacio entre tarjetas */
+        background-color: var(--neutral-950);
+        padding: var(--space-xl) var(--space-md);
+        text-align: center;
+        /* BORRAMOS display: grid de aquí para que no estorbe */
+        display: block; 
     }
 
     /* El título ocupa todo el ancho de arriba */
     .services__heading {
-        grid-column: 1 / -1; 
+        font-size: 2.5rem;
+        margin-bottom: var(--space-xl);
     }
     
     .service-card {
         margin-bottom: 0; /* Quitamos margen porque ya usamos gap */
         height: 100%; /* Para que todas tengan la misma altura */
+    }
+
+    .services__container {
+        display: grid;
+        /* LA CLAVE: 3 columnas de igual tamaño (1 fracción cada una) */
+        grid-template-columns: repeat(3, 1fr); 
+        
+        gap: var(--space-lg);
+        
+        /* Aseguramos el ancho y el centrado */
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto; /* Margen automático a los lados = CENTRADO */
+        justify-content: center;
+    }
+
+    /* 2. MEJORAMOS EL TÍTULO */
+    .services__heading {
+        font-size: 2.5rem; /* Más grande en PC */
+        margin-bottom: var(--space-xl);
+    }
+
+    /* 3. EFECTOS HOVER (Solo para PC que tiene mouse) */
+    .tech-card {
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        height: 100%;
+        width: 100%;
+    }
+
+    .tech-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--brand-500);
+        background-color: #1a1a1a;
+    }
+
+    .about__container {
+        grid-template-columns: 1fr 1fr; /* En PC: Dos columnas (50% - 50%) */
+    }
+    
+    .about__image-container {
+        height: 500px; /* Más alta en PC */
     }
 
     .footer__list {

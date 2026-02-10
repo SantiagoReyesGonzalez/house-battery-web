@@ -36,71 +36,86 @@
         <section id="marcas" class="brands">
             <h2 class="brands__title">Repuestos originales</h2>
             <ul class="brands__list">
-                <li class="brands__item">Energizer</li>
-                <li class="brands__item">GP Batteries</li>
-                <li class="brands__item">Netion</li>
+                <li class="brands__item">
+                    <img src="assets/img/energizer-logo.webp" alt="Logo de Energizer" class="brands__img">
+                </li>
+                <li class="brands__item">
+                    <img src="assets/img/gp-batteries-logo.webp" alt="Logo de GP Batteries" class="brands__img">
+                </li>
+                <li class="brands__item">
+                    <img src="assets/img/beston-logo.webp" alt="Logo de Beston" class="brands__img">
+                </li>
+                <li class="brands__item">
+                    <img src="assets/img/eveready-logo.webp" alt="Logo de Eveready" class="brands__img">
+                </li>
+                <li class="brands__item">
+                    <img src="assets/img/maxday-logo.webp" alt="Logo de Maxday" class="brands__img">
+                </li>
             </ul>
         </section>
 
         <section id="servicios" class="services">
-            <h2 class="services__heading">Nuestros Servicios</h2>
+            <h2 class="services__heading">Nuestras Soluciones</h2>
             
-            <article class="service-card">
-                <h3 class="service-card__title">UPS, Pilas e Iluminación</h3>
-                <img class="service-card__img" src="assets/img/favicon.webp" alt="Pilas recargables y ups">
-                <div class="service-card__content">
-                    <p>Venta y cambio de batería para <strong>UPS y sistemas de respaldo</strong></p>
-                    <p>Amplio stock de pilas de botón, baterías alcalinas y recargables.</p>
-                </div>
-            </article>
-            
-            <article class="service-card">
-                <h3 class="service-card__title">Ensamble y Restauración de Baterías</h3>
-                <img class="service-card__img" src="assets/img/favicon.webp" alt="Batería recargable ensamblada">
-                <ul class="service-card__list">
-                    <li>Fabricación profesional de packs de baterías.</li>
-                    <li>Reparación de baterías de <strong>patinetas y bicicletas eléctricas</strong>.</li>
-                    <li>Revitalizamos taladros y equipos inalámbricos.</li>
-                    <li>Uso de soldador de puntos para máxima seguridad.</li>
-                </ul>
-            </article>
+            <div class="services__container">
+                <article class="tech-card">
+                    <div class="tech-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2" /><path d="M7 10l0 4" /><path d="M10 10l0 4" /><path d="M13 10l0 4" /><path d="M16 10l0 4" /></svg>
+                    </div>
+                    <h3 class="tech-card__title">Energía & UPS</h3>
+                    <p class="tech-card__desc">Venta y mantenimiento de sistemas de respaldo. Tu energía nunca se detiene.</p>
+                </article>
 
-            <article class="service-card">
-                <h3 class="service-card__title">Proyectos Electrónicos y Herramientas</h3>
-                <img class="service-card__img" src="assets/img/favicon.webp" alt="Proyecto electronico">
-                <ul class="service-card__list">
-                    <li>Todo para el estudiante de ingeniería y electrónica.</li>
-                    <li>Diseño y montaje de proyectos (Arduino, robótica).</li>
-                    <li>Venta de multímetros y cautines.</li>
-                </ul>
-            </article>
+                <article class="tech-card">
+                    <div class="tech-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11" /></svg>
+                    </div>
+                    <h3 class="tech-card__title">Laboratorio Litio</h3>
+                    <p class="tech-card__desc">Soldadura de punto profesional. Revivimos baterías de patinetas y herramientas.</p>
+                </article>
+
+                <article class="tech-card">
+                    <div class="tech-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3l6 0" /><path d="M12 3l0 3" /><path d="M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2" /><path d="M8 11l0 5" /><path d="M8 13.5l3.5 -2.5" /><path d="M11.5 16l4.5 -5" /></svg>
+                    </div>
+                    <h3 class="tech-card__title">Proyectos</h3>
+                    <p class="tech-card__desc">Componentes, robótica y asesoría para estudiantes de ingeniería.</p>
+                </article>
+            </div>
         </section>
 
         <section id="nosotros" class="about">
-            <h2 class="about__title">Más que una Tienda, un Laboratorio de Energía</h2>
-            <div class="about__content">
-                <h2>House Battery: El corazón de la tecnología en Bogotá</h2>
-        
-                <p>
-                    Ubicados en la <strong>Calle 21</strong>, nos diferenciamos por nuestra <strong>capacidad técnica</strong>. En <strong>House Battery</strong> no improvisamos: contamos con maquinaria especializada de <strong>soldadura por puntos de alta frecuencia</strong> para garantizar ensambles de baterías <strong>seguros, duraderos y profesionales</strong>.
-                </p>
-
-                <hr>
-
-                <h3>Soluciones para Ingeniería y Movilidad</h3>
-                <p>
-                    Somos el punto de encuentro ideal para <strong>ingenieros y estudiantes</strong>. Ya sea que necesites:
-                </p>
+            <div class="about__container">
                 
-                <ul>
-                    <li>Revivir la batería de tu <strong>Scooter Eléctrico</strong>.</li>
-                    <li>Cambiar la pila de tu <strong>UPS</strong>.</li>
-                    <li>Conseguir el <strong>multímetro y componentes</strong> esenciales para tu carrera.</li>
-                </ul>
+                <figure class="about__image-container">
+                    <img src="assets/img/taller-fondo.webp" alt="Técnico trabajando en batería de litio" class="about__img">
+                </figure>
 
-                <blockquote>
-                    <strong>Aquí tienes la solución garantizada.</strong>
-                </blockquote>
+                <div class="about__content">
+                    <h2 class="about__title">MÁS QUE UNA TIENDA,<br>UN LABORATORIO.</h2>
+                    
+                    <h3 class="about__subtitle">El corazón de la tecnología en la Calle 21</h3>
+                    
+                    <p class="about__text">
+                        En <strong>House Battery</strong> no improvisamos. Nos diferenciamos por nuestra capacidad técnica y maquinaria especializada de <strong>soldadura de punto de alta frecuencia</strong>.
+                    </p>
+
+                    <div class="about__features">
+                        <div class="feature-item">
+                            <span class="feature-icon">⚡</span>
+                            <p>Ensambles profesionales y seguros.</p>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎓</span>
+                            <p>El punto de encuentro para ingenieros.</p>
+                        </div>
+                    </div>
+
+                    <blockquote class="about__quote">
+                        "Aquí tienes la solución garantizada."
+                    </blockquote>
+                </div>
+
             </div>
         </section>
 
