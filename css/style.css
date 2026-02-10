@@ -621,6 +621,28 @@ html {
     background-color: var(--neutral-900); /* Se oscurece un poco más */
     box-shadow: 0 0 8px rgba(255, 214, 0, 0.2); /* Resplandor suave */
 }
+/* =========================================
+   ESTILOS DE ESTADO DEL FORMULARIO
+   ========================================= */
+.form-status {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    min-height: 20px; /* Reserva espacio para que no salte */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-status.success {
+    color: #4ade80; /* Verde brillante */
+    opacity: 1;
+}
+
+.form-status.error {
+    color: #ef4444; /* Rojo alerta */
+    opacity: 1;
+}
 
 /* FOOTER */
 .footer {

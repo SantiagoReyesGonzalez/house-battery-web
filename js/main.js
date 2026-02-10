@@ -87,3 +87,53 @@ const hiddenElements = document.querySelectorAll('.reveal');
 
 // 3. Le decimos al observador que los vigile
 hiddenElements.forEach((el) => observer.observe(el));
+
+/* =========================================
+   6. ENVÍO DE FORMULARIO SIN RECARGAR (AJAX)
+   ========================================= */
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(event) {
+        // 1. Evitamos que la página se recargue o cambie de url
+        event.preventDefault();
+
+        // 2. Guardamos los datos del formulario
+        const data = new FormData(event.target);
+        
+        // 3. Mostramos estado de "Enviando..."
+        formStatus.textContent = "Enviando mensaje...";
+        formStatus.className = "form-status"; // Reseteamos clases
+
+        // 4. Enviamos los datos a Formspree usando Fetch (AJAX)
+        fetch(event.target.action, {
+            method: contactForm.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                // ÉXITO: Limpiamos el form y mostramos mensaje verde
+                formStatus.textContent = "¡Gracias! Tu mensaje ha sido enviado.";
+                formStatus.classList.add('success');
+                contactForm.reset(); // Borra lo que escribió el usuario
+            } else {
+                // ERROR DE SERVIDOR
+                response.json().then(data => {
+                    if (Object.hasOwn(data, 'errors')) {
+                        formStatus.textContent = data["errors"].map(error => error["message"]).join(", ");
+                    } else {
+                        formStatus.textContent = "Ups! Hubo un problema al enviar.";
+                    }
+                    formStatus.classList.add('error');
+                });
+            }
+        }).catch(error => {
+            // ERROR DE RED
+            formStatus.textContent = "Error de conexión. Intenta de nuevo.";
+            formStatus.classList.add('error');
+        });
+    });
+}

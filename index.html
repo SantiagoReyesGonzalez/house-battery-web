@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>House Battery</title>
+    <link rel="shortcut icon" href="assets/img/logo-icono.webp" type="image/x-icon">
     <meta name="description" content="House Battery Bogotá: Soldadura de punto y reparación de baterías para patinetas, UPS, herramientas y todo equipo. Componentes y proyectos estudiantiles.">
     <meta name="keywords" content="reparación de baterías Bogotá, soldadura de punto baterías litio Bogotá, reparación batería patineta eléctrica, cambio batería UPS, empaquetado celdas 18650, reparación baterías herramientas, baterías recargables Bogotá, House Battery Bogotá">
 </head>
@@ -124,7 +125,7 @@
 
         <section id="contacto" class="contact reveal">
             <h2 class="contact__title">Contáctanos</h2>
-            <form action="https://formspree.io/f/maqdqoqy" method="POST" class="contact__form reveal">
+            <form action="https://formspree.io/f/maqdqoqy" id="contactForm" method="POST" class="contact__form reveal">
     
                 <input type="hidden" name="_subject" value="¡Nuevo mensaje de House Battery Web!">
                 <input type="hidden" name="_language" value="es">
@@ -151,6 +152,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn--primary">Enviar Mensaje</button>
+                <div id="formStatus" class="form-status"></div>
         </form>
         </section>
     </main>
