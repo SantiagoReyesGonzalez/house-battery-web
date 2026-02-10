@@ -124,7 +124,12 @@
 
         <section id="contacto" class="contact reveal">
             <h2 class="contact__title">Contáctanos</h2>
-            <form action="#" class="contact__form">
+            <form action="https://formspree.io/f/maqdqoqy" method="POST" class="contact__form reveal">
+    
+                <input type="hidden" name="_subject" value="¡Nuevo mensaje de House Battery Web!">
+                <input type="hidden" name="_language" value="es">
+                <input type="text" name="_gotcha" style="display:none">
+
                 <div class="form-group">
                     <label for="nombre" class="form-group__label">Nombre</label>
                     <input type="text" id="nombre" name="nombre" class="form-group__input" required>
@@ -146,7 +151,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn--primary">Enviar Mensaje</button>
-            </form>
+        </form>
         </section>
     </main>
     
