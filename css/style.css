@@ -54,53 +54,101 @@ button, input, select,textarea{
     font: inherit;
 }
 /* =========================================
-   BLOQUE: HEADER (.header)
+   BLOQUE: HEADER (.header) - CORREGIDO
    ========================================= */
 .header {
-    /* 1. Lo fijamos en la parte superior */
-    /* position: fixed;  */
+    position: fixed; /* Debe estar fija para flotar sobre la foto */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Para que siempre esté encima de todo */
+    z-index: 1000;
     
-    /* 2. Transparencia y Transición */
-    background-color: transparent; /* Fondo invisible al inicio */
-    transition: background-color 0.4s ease, padding 0.3s ease; /* Suavidad al cambiar */
+    /* ESTADO INICIAL: TRANSPARENTE */
+    background-color: transparent; 
     
-    /* 3. Ajuste visual */
-    text-align: center;
-    padding: var(--space-md) 0;
+    /* Alineación (esto ya lo tenías bien) */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    
+    /* Transición suave para que el cambio de color no sea brusco */
+    transition: background-color 0.4s ease, padding 0.3s ease;
 }
 
-/* ESTADO: SCROLLED (Esta clase se activará con JS en el futuro) */
-/* Cuando bajemos, el header se verá así: */
+/* ESTADO SCROLLED (Cuando bajamos) */
+/* ESTADO SCROLLED (Efecto Glassmorphism / Blur) */
 .header--scrolled {
-    background-color: var(--neutral-950); /* Fondo sólido oscuro */
-    padding: var(--space-sm) 0;           /* Se hace un poco más compacto */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Sombra para separar del fondo */
+    /* 1. Fondo semi-transparente (IMPORTANTE: No puede ser sólido) */
+    /* Usamos tu color neutral-950 pero con 0.7 (70%) de opacidad */
+    background-color: hsla(240, 6%, 10%, 0.7); 
+
+    /* 2. La Magia del Blur (Desenfoque de lo que hay atrás) */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* Obligatorio para que funcione en iPhone/Safari */
+
+    /* 3. Detalles Finos */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Sombra difusa */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Una línea casi invisible abajo */
+    
+    padding: 0.5rem var(--space-md);
 }
 
 /* Elemento: Logo */
 .header__logo {
-    width: 180px;
+    width: 60px; /* Ajusté un poco el tamaño para móvil */
     height: auto;
-    margin-bottom: var(--space-sm);
+    margin-bottom: 0; /* <--- ¡IMPORTANTE! Cambia esto a 0 */
 }
 
 /* =========================================
    BLOQUE: NAV (.nav)
    ========================================= */
 /* Elemento: Lista de navegación */
+/* --- MENÚ MÓVIL (FLOTANTE CON EFECTO VIDRIO) --- */
 .nav__list {
     list-style: none;
-    display: flex;
+    display: none;       
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: var(--space-md);
-    margin-top: var(--space-sm);
+    
+    position: absolute;  
+    top: 100%;           
+    left: 0;             
+    width: 100%;         
+    
+    /* === AQUÍ ESTÁ EL CAMBIO (GLASSMORPHISM) === */
+    /* 1. Fondo negro al 80% de opacidad (para que sea legible pero transparente) */
+    background-color: hsla(240, 6%, 10%, 0.9);; 
+    
+    /* 2. El Desenfoque Mágico */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* Para iPhone */
+    
+    /* 3. Bordes finos para elegancia */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5); 
+    
+    padding: var(--space-lg) 0;
+    
+    /* Animación */
+    animation: bajarMenu 0.3s ease forwards;
+    z-index: 999;
 }
+.nav__list.nav__list--visible {
+    display: flex; /* Cuando tenga esta clase, SE MUESTRA */
+}
+.nav__toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-main);
+    display: block; /* Aparece */
+    padding: 10px;
+}
+
 
 /* Elemento: Enlace de navegación */
 .nav__link {
@@ -116,6 +164,11 @@ button, input, select,textarea{
     color: var(--color-primary);
 }
 
+
+@keyframes bajarMenu {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 /* =========================================
    COMPONENTES: BOTONES (.btn)
    ========================================= */
@@ -622,9 +675,26 @@ button, input, select,textarea{
         flex-direction: row;      /* <--- ¡Aquí ocurre el cambio! De Columna a Fila */
         gap: var(--space-lg);     /* Más espacio entre enlaces porque tenemos pantalla de sobra */
         margin-top: 0;            /* Ya no necesitamos el margen de arriba */
+        margin-right: 40px;
     }
     .nav__toggle {
         display: none; 
+    }
+    .nav__list {
+        display: flex; 
+        flex-direction: row;
+        gap: var(--space-lg);
+        margin-top: 0;
+        animation: none;
+        
+        /* --- ESTO ES LO QUE FALTABA (EL RESET) --- */
+        position: static; /* 1. Deja de flotar y vuelve al flujo normal */
+        width: auto;      /* 2. Que ocupe solo lo necesario (no el 100%) */
+        height: auto;     /* 3. Altura automática */
+        background-color: transparent; /* 4. Sin fondo oscuro */
+        box-shadow: none; /* 5. Sin sombra */
+        border: none;     /* 6. Sin bordes */
+        padding: 0;       /* 7. Sin relleno extra */
     }
     .hero__title {
         font-size: 3.5rem; /* <--- De 32px pasa a unos 56px. ¡Ahora sí impone respeto! */
