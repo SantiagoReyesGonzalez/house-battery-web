@@ -43,15 +43,42 @@ body {
     background-color: var(--bg-body);
     color: var(--text-main);
     font-family: var(--font-main);
-    padding-bottom: var(--space-xl);
 }
 
+img,picture,video,canvas,svg{
+    display: block;
+    max-width: 100%;
+}
+
+button, input, select,textarea{
+    font: inherit;
+}
 /* =========================================
    BLOQUE: HEADER (.header)
    ========================================= */
 .header {
+    /* 1. Lo fijamos en la parte superior */
+    /* position: fixed;  */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Para que siempre esté encima de todo */
+    
+    /* 2. Transparencia y Transición */
+    background-color: transparent; /* Fondo invisible al inicio */
+    transition: background-color 0.4s ease, padding 0.3s ease; /* Suavidad al cambiar */
+    
+    /* 3. Ajuste visual */
     text-align: center;
     padding: var(--space-md) 0;
+}
+
+/* ESTADO: SCROLLED (Esta clase se activará con JS en el futuro) */
+/* Cuando bajemos, el header se verá así: */
+.header--scrolled {
+    background-color: var(--neutral-950); /* Fondo sólido oscuro */
+    padding: var(--space-sm) 0;           /* Se hace un poco más compacto */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Sombra para separar del fondo */
 }
 
 /* Elemento: Logo */
@@ -68,8 +95,11 @@ body {
 .nav__list {
     list-style: none;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: var(--space-md);
+    margin-top: var(--space-sm);
 }
 
 /* Elemento: Enlace de navegación */
@@ -157,11 +187,264 @@ body {
     margin-bottom: var(--space-md);
     max-width: 800px;
 }
-
+/* Modificador para la marca en el título */
+.hero__title--brand {
+    color: var(--brand-500);      /* Amarillo Eléctrico */
+    display: block;               /* Forza un salto de línea (queda arriba del resto) */
+    font-size: 1.3em;             /* Un 30% más grande que el resto del texto */
+    text-transform: uppercase;    /* Mayúsculas sostenidas */
+    letter-spacing: 2px;          /* Espaciado para elegancia */
+    margin-bottom: var(--space-sm); /* Un respiro antes del resto del título */
+    text-shadow: 0 2px 10px rgba(248, 247, 176, 0.5); /* Sombra para que resalte sobre la foto */
+}
 /* Elemento: Descripción del Hero */
 .hero__description {
     font-size: 1.2rem;
     margin-bottom: var(--space-lg);
     max-width: 600px;
     color: var(--neutral-200);
+}
+
+/* =========================================
+   DÍA 4: LAYOUT DE SERVICIOS (GRID)
+   ========================================= */
+
+/* Mobile First: Por defecto una columna (ya lo hace el navegador), 
+   pero preparamos el contenedor */
+.services {
+    padding: var(--space-xl) var(--space-md);
+    background-color: var(--neutral-900); /* Fondo un poco más claro que el body */
+    text-align: center;
+}
+
+.services__heading {
+    margin-bottom: var(--space-lg);
+    font-size: 2rem;
+    color: var(--brand-500);
+}
+
+/* Las Tarjetas Individuales */
+.service-card {
+    background-color: var(--neutral-950); /* Tarjeta oscura */
+    border: 1px solid var(--neutral-800);
+    border-radius: 12px;
+    padding: var(--space-md);
+    margin-bottom: var(--space-md); /* Separación en móvil */
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    border-color: var(--brand-500); /* Borde amarillo al pasar mouse */
+    transform: translateY(-5px);    /* Efecto flotante */
+}
+
+.service-card__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Recorta la imagen para que no se deforme */
+    border-radius: 8px;
+    margin-bottom: var(--space-md);
+}
+
+.service-card__title {
+    color: var(--text-main);
+    margin-bottom: var(--space-sm);
+}
+
+.service-card__list {
+    text-align: left;
+    padding-left: var(--space-md);
+    color: var(--text-muted);
+}
+
+
+/* =========================================
+   SECCIÓN CONTACTO (Puliendo detalles)
+   ========================================= */
+.contact {
+    padding: var(--space-xl) var(--space-md); /* Más aire arriba y abajo */
+    background-color: var(--neutral-950);     /* Aseguramos fondo oscuro */
+    text-align: center;
+}
+
+.contact__title {
+    margin-bottom: var(--space-lg);
+    font-size: 2rem;
+    color: var(--brand-500);
+}
+
+.contact__form {
+    max-width: 500px;    /* Limitamos el ancho para que no se vea gigante en PC */
+    margin: 0 auto;      /* Centramos el formulario en la pantalla */
+    text-align: left;    /* El contenido interno alineado a la izquierda */
+    
+    /* Agregamos un fondo sutil al contenedor del form para enmarcarlo */
+    background-color: var(--neutral-900); 
+    padding: var(--space-lg);
+    border-radius: 12px;
+    border: 1px solid var(--neutral-800);
+}
+
+/* El botón dentro del formulario */
+.contact__form .btn {
+    width: 100%;       /* Que ocupe todo el ancho disponible */
+    margin-top: var(--space-md); /* Separarlo un poco del último campo */
+}
+/* =========================================
+   ESTILOS DEL FORMULARIO (DARK MODE)
+   ========================================= */
+.form-group {
+    margin-bottom: var(--space-md);
+    text-align: left; /* Las etiquetas alineadas a la izquierda se leen mejor */
+    max-width: 600px; /* Que no se estire infinito en PC */
+    margin-left: auto; /* Centrado del bloque */
+    margin-right: auto;
+}
+
+.form-group__label {
+    display: block; /* Que ocupe su propia línea */
+    margin-bottom: 0.5rem;
+    color: var(--brand-500); /* Etiqueta dorada */
+    font-weight: bold;
+}
+
+/* El campo donde se escribe */
+.form-group__input,
+.form-group__textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--neutral-800); /* Fondo gris oscuro, no blanco */
+    border: 1px solid var(--neutral-800); /* Borde sutil */
+    border-radius: 6px;
+    color: var(--text-main); /* Texto blanco al escribir */
+    font-family: inherit;
+    outline: none; /* Quitamos el borde azul feo de Chrome */
+    transition: all 0.3s ease;
+}
+
+.form-group__textarea {
+    min-height: 120px; /* Altura para el mensaje */
+    resize: vertical;  /* Permite agrandar solo hacia abajo */
+}
+
+/* Cuando el usuario hace clic para escribir (FOCUS) */
+.form-group__input:focus,
+.form-group__textarea:focus {
+    border-color: var(--brand-500); /* Borde se pone AMARILLO */
+    background-color: var(--neutral-900); /* Se oscurece un poco más */
+    box-shadow: 0 0 8px rgba(255, 214, 0, 0.2); /* Resplandor suave */
+}
+
+/* FOOTER */
+.footer {
+    background-color: #000; /* Negro puro para contrastar con el fondo gris del body */
+    padding: var(--space-xl) var(--space-md); /* Mucho espacio arriba y abajo */
+    text-align: center;
+    border-top: 4px solid var(--brand-500); /* <--- EL DETALLE DE MARCA (Borde Dorado) */
+}
+.footer__list {
+
+    list-style: none; /* <--- ADIÓS A LOS PUNTICOS (BULLETS) */
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.footer__title {
+    color: var(--brand-500);      /* Título en dorado */
+    margin-bottom: var(--space-lg);
+    font-size: 1.5rem;            /* Más grande */
+    text-transform: uppercase;    /* Mayúsculas imponentes */
+    letter-spacing: 2px;          /* Espaciado elegante */
+    font-weight: 700;
+}
+
+.footer__address {
+    font-style: normal; /* Quita la cursiva fea por defecto */
+}
+
+.footer__item {
+    color: var(--text-muted);
+    font-size: 1rem;
+    display: flex;       /* Para alinear icono y texto si agregamos iconos luego */
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* =========================================
+   BOTÓN FLOTANTE WHATSAPP
+   ========================================= */
+.btn-whatsapp {
+    position: fixed; /* Se queda quieto al hacer scroll */
+    bottom: 30px;    /* Distancia desde abajo */
+    right: 30px;     /* Distancia desde la derecha */
+    width: 60px;
+    height: 60px;
+    background-color: #25d366; /* Verde oficial de WhatsApp */
+    border-radius: 50%; /* Lo hace redondo */
+    display: flex;
+    justify-content: center; /* Centra el icono */
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombrita para profundidad */
+    z-index: 1000; /* Asegura que flote sobre todo */
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    transform: scale(1.1); /* Crece un poquito al pasar el mouse */
+    background-color: #128c7e; /* Verde más oscuro al hover */
+}
+
+/* Animación de "latido" para llamar la atención */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.btn-whatsapp {
+    animation: pulse 2s infinite; /* Activa la animación */
+}
+
+/* --- MAGIA RESPONSIVE (TABLET Y PC) --- */
+@media (min-width: 768px) {
+    .nav__list {
+        flex-direction: row;      /* <--- ¡Aquí ocurre el cambio! De Columna a Fila */
+        gap: var(--space-lg);     /* Más espacio entre enlaces porque tenemos pantalla de sobra */
+        margin-top: 0;            /* Ya no necesitamos el margen de arriba */
+    }
+    .hero__title {
+        font-size: 3.5rem; /* <--- De 32px pasa a unos 56px. ¡Ahora sí impone respeto! */
+    }
+    .hero__description {
+        font-size: 1.2rem; /* El texto del párrafo también crece un poco para leerse mejor */
+    }
+    .services {
+        /* Activamos la Grilla */
+        display: grid;
+        /* Esto crea columnas automáticas que miden mínimo 300px */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        gap: var(--space-lg); /* Espacio entre tarjetas */
+    }
+
+    /* El título ocupa todo el ancho de arriba */
+    .services__heading {
+        grid-column: 1 / -1; 
+    }
+    
+    .service-card {
+        margin-bottom: 0; /* Quitamos margen porque ya usamos gap */
+        height: 100%; /* Para que todas tengan la misma altura */
+    }
+
+    .footer__list {
+        flex-direction: row;      /* 1. Cambiamos a Horizontal */
+        justify-content: center;  /* 2. Centramos todo en el medio de la pantalla */
+        gap: var(--space-xl);     /* Buen espacio entre datos */
+    }
+
 }
