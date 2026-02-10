@@ -44,3 +44,22 @@ navToggle.addEventListener('click', () => {
         navToggle.setAttribute('aria-label', 'Abrir menú');
     }
 });
+
+/* =========================================
+   4. CERRAR MENÚ AL HACER CLIC EN UN ENLACE
+   ========================================= */
+// Seleccionamos TODOS los enlaces dentro del menú
+const links = document.querySelectorAll('.nav__link');
+
+links.forEach(link => {
+    link.addEventListener('click', () => {
+        // 1. Cerramos el menú
+        navList.classList.remove('nav__list--visible');
+        
+        // 2. Actualizamos el icono del botón (Accesibilidad)
+        navToggle.setAttribute('aria-label', 'Abrir menú');
+        
+        // 3. Forzamos la revisión del header (para que se quede oscuro si bajó)
+        actualizarHeader(); // <--- Reutilizamos tu función maestra
+    });
+});

@@ -53,6 +53,16 @@ img,picture,video,canvas,svg{
 button, input, select,textarea{
     font: inherit;
 }
+
+html {
+    /* 1. Hace que el viaje a la sección sea como deslizarse, no teletransportarse */
+    scroll-behavior: smooth;
+    
+    /* 2. MUY IMPORTANTE: */
+    /* Como tu header es fijo (fixed), tapa el inicio de la sección. */
+    /* Esto le dice al navegador: "Frena 80px antes de llegar" */
+    scroll-padding-top: 80px; 
+}
 /* =========================================
    BLOQUE: HEADER (.header) - CORREGIDO
    ========================================= */
