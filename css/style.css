@@ -63,6 +63,24 @@ html {
     /* Esto le dice al navegador: "Frena 80px antes de llegar" */
     scroll-padding-top: 80px; 
 }
+
+/* =========================================
+   ANIMACIONES DE ENTRADA (SCROLL REVEAL)
+   ========================================= */
+
+/* 1. Estado Inicial (Oculto) */
+.reveal {
+    opacity: 0;             /* Invisible */
+    transform: translateY(50px); /* Un poco más abajo de su posición */
+    transition: all 0.8s ease;   /* La magia de la suavidad */
+}
+
+/* 2. Estado Activo (Visible) */
+/* Esta clase se la pondrá JavaScript cuando el elemento entre en pantalla */
+.reveal.active {
+    opacity: 1;             /* Visible */
+    transform: translateY(0);    /* Vuelve a su sitio original */
+}
 /* =========================================
    BLOQUE: HEADER (.header) - CORREGIDO
    ========================================= */

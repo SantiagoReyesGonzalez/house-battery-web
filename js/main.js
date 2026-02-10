@@ -63,3 +63,27 @@ links.forEach(link => {
         actualizarHeader(); // <--- Reutilizamos tu función maestra
     });
 });
+
+/* =========================================
+   5. ANIMACIÓN AL HACER SCROLL (Intersection Observer)
+   ========================================= */
+
+// 1. Configuramos el "Observador"
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        // Si el elemento es visible en la pantalla...
+        if (entry.isIntersecting) {
+            // ...le agregamos la clase 'active' para que suba y aparezca
+            entry.target.classList.add('active');
+        }
+    });
+}, {
+    threshold: 0.1 // Se activa cuando el 10% del elemento ya se ve
+});
+
+// 2. Seleccionamos qué elementos queremos animar
+// Buscamos todos los elementos que tengan la clase '.reveal'
+const hiddenElements = document.querySelectorAll('.reveal');
+
+// 3. Le decimos al observador que los vigile
+hiddenElements.forEach((el) => observer.observe(el));
