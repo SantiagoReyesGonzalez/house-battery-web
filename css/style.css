@@ -243,7 +243,7 @@ html {
 /* =========================================
    BLOQUE: HERO (.hero)
    ========================================= */
-.hero {
+.hero{
     /* Layout y Estilos Base */
     min-height: 80vh;
     display: flex;
@@ -262,11 +262,17 @@ html {
     color: var(--text-main);
 }
 
+
+
 /* Elemento: Título del Hero */
 .hero__title {
     font-size: var(--space-lg);
     margin-bottom: var(--space-md);
     max-width: 800px;
+
+    /* AGREGA ESTO PARA QUE SE CENTRE SIEMPRE */
+    margin-left: auto;
+    margin-right: auto;
 }
 /* Modificador para la marca en el título */
 .hero__title--brand {
@@ -284,71 +290,119 @@ html {
     margin-bottom: var(--space-lg);
     max-width: 600px;
     color: var(--neutral-200);
+
+    /* AGREGA ESTO PARA CENTRAR EL PÁRRAFO */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* =========================================
-   SECCIÓN DE MARCAS (Logos o Nombres)
+   SECCIÓN MARCAS (INFINITE SLIDER)
    ========================================= */
-.brands {
-    background-color: var(--neutral-950);
-    padding: var(--space-lg) 0;
-    text-align: center;
-    border-bottom: 1px solid var(--neutral-800); /* Una línea sutil para separar */
-}
+
 
 .brands__title {
-    color: var(--brand-500); /* Cambiémoslo a DORADO para que resalte más */
-    font-size: 1.5rem;       /* <--- Aumentamos a un tamaño más decente (aprox 24px) */
-    font-weight: 700;        /* Negrita para que tenga peso */
+    color: var(--brand-500); 
+    font-size: 2rem;           /* Mucho más grande */
+    font-weight: 800;          /* Ultra negrita */
     text-transform: uppercase;
-    letter-spacing: 3px;     /* Un poco más de aire entre letras */
-    margin-bottom: var(--space-lg); /* Más separación con los logos */
+    letter-spacing: 4px;       /* Mucho aire entre letras */
+    margin-bottom: var(--space-xl);
+    
+    /* EFECTO NEÓN SUTIL */
+    text-shadow: 0 0 15px rgba(255, 214, 0, 0.3); 
+    position: relative;
+    display: inline-block;
 }
 
-/* =========================================
-   CORRECCIÓN DE LOGOS (MARCAS)
-   ========================================= */
-
-/* 1. La lista contenedora */
-.brands__list {
-    list-style: none;
-    padding: 0 ;
-    display: flex;
-    flex-wrap: wrap;         /* Permite que bajen si no caben */
-    justify-content: center; /* Centrados horizontalmente */
-    align-items: center;     /* Centrados verticalmente */
-    gap: var(--space-xl);    /* Espacio entre logos */
+/* LÍNEA DECORATIVA ABAJO DEL TÍTULO */
+.brands__title::after {
+    content: '';
+    display: block;
+    width: 60%;               /* La línea mide el 60% del texto */
+    height: 3px;
+    background-color: var(--brand-500);
+    margin: 10px auto 0;      /* Centrada */
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 214, 0, 0.5); /* La línea también brilla */
 }
 
-/* 2. El item de la lista (la caja invisible) */
-.brands__item {
+/* EL CONTENEDOR PRINCIPAL CON MÁSCARA (FADE OUT) */
+.brands-slider {
+    background-color: var(--neutral-950);
+    padding: var(--space-xl) 0;
+    text-align: center;
+    border-bottom: 1px solid var(--neutral-800);
+    overflow: hidden; 
+    
+    /* --- LA MAGIA: MÁSCARA DEGRADADA --- */
+    /* Esto hace que los lados se vean transparentes */
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+    );
+}
+
+/* EL RIEL (PISTA) */
+.brands-slider__track {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: var(--space-xl);
+    width: max-content;
+    
+    /* Aumentamos el tiempo a 30s para que sea más suave y elegante */
+    animation: scroll 30s linear infinite;
 }
 
-/* 3. LA IMAGEN (Aquí está el truco para que no sean gigantes) */
+/* LAS IMÁGENES (LOGOS) */
+
 .brands__img {
-    height: 40px;        
-    width: auto;         
-    object-fit: contain; 
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    
+    /* CORRECCIÓN DE COLOR: */
+    /* 1. grayscale(100%): Elimina el color (todo se vuelve gris). */
+    /* 2. invert(1): Vuelve el fondo blanco -> negro (invisible) y las letras oscuras -> blancas. */
+    /* 3. brightness(2): Le da más potencia al blanco para que brille. */
+    filter: grayscale(100%) invert(1) brightness(2);
+    
+    /* Esto hace que el "fondo negro" (resultado de invertir el blanco) se vuelva transparente */
+    mix-blend-mode: screen; 
+    
     border-radius: 4px;
-    
-    /* --- EL NUEVO TRUCO --- */
-    /* 1. Los volvemos blanco y negro (grayscale) */
-    /* 2. Invertimos los colores (invert): Lo negro se vuelve blanco */
-    /* 3. Le bajamos un poco la intensidad (opacity) */
-    filter: grayscale(100%) invert(1) opacity(0.8); 
-    
+    opacity: 0.8; /* Un poco de transparencia para que no chillen tanto */
     transition: all 0.3s ease;
-    /* ¡ASEGÚRATE DE BORRAR LA LÍNEA DE 'mix-blend-mode' SI AÚN LA TIENES! */
 }
 
-/* Efecto al pasar el mouse */
+/* AL PASAR EL MOUSE (HOVER) */
 .brands__img:hover {
-    /* Al pasar el mouse, quitamos el filtro para que se vean a color normal */
-    filter: grayscale(0%) invert(0) opacity(1);
+    opacity: 1;
     transform: scale(1.1);
+    /* Al hacer hover, brillan al máximo */
+    filter: grayscale(100%) invert(1) brightness(10) drop-shadow(0 0 5px rgba(255,255,255,0.8));
+}
+
+/* DEFINICIÓN DE LA ANIMACIÓN (Keyframes) */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Movemos el riel hacia la izquierda el 50% de su tamaño */
+        /* (Por eso duplicamos las imágenes, para que al llegar a la mitad, empiece de nuevo visualmente) */
+        transform: translateX(-50%);
+    }
 }
 
 /* =========================================
