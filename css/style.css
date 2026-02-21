@@ -221,26 +221,77 @@ button, input, select, textarea {
 }
 
 /* =========================================
-   6. SECCIÓN: HERO
+   SECCIÓN: HERO (CON SLIDER)
    ========================================= */
 .hero {
-    min-height: 80vh;
+    position: relative;
+    min-height: 90vh; /* Un poco más alto para impacto visual */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: var(--space-xl);
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/img/taller-fondo.webp');
+    padding: var(--space-xl) var(--space-md);
+    overflow: hidden; /* Necesario para el efecto de zoom */
+    color: var(--text-main);
+    margin-top: -80px; /* Compensa la altura del header fijo */
+    padding-top: 160px; /* Espacio interno superior */
+}
+
+/* Contenedor absoluto para el slider */
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Estilos para cada slide individual */
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    color: var(--text-main);
+    opacity: 0;
+    transform: scale(1); /* Estado inicial sin zoom */
+    transition: opacity 1.5s ease-in-out, transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Estado activo del slide (Visible y con Zoom lento "Ken Burns") */
+.hero-slide.active {
+    opacity: 1;
+    transform: scale(1.1); /* Zoom sutil hacia adentro */
+    z-index: 1;
+}
+
+/* Overlay oscuro separado para control independiente */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(5, 5, 7, 0.7), rgba(5, 5, 7, 0.85));
+    z-index: 2;
+}
+
+/* Contenido por encima del slider y overlay */
+.hero-content {
+    position: relative;
+    z-index: 3; /* Asegura que el texto esté encima de todo */
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .hero__title {
-    font-size: var(--space-lg);
-    margin: 0 auto var(--space-md) auto;
-    max-width: 800px;
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
 }
 
 .hero__title--brand {
@@ -248,18 +299,49 @@ button, input, select, textarea {
     display: block;
     font-size: 1.3em;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     margin-bottom: var(--space-sm);
-    text-shadow: 0 2px 10px rgba(248, 247, 176, 0.5);
+    text-shadow: 0 2px 15px rgba(255, 214, 0, 0.4);
+    font-weight: 800;
 }
 
 .hero__description {
-    font-size: 1.2rem;
-    margin: 0 auto var(--space-lg) auto;
-    max-width: 600px;
+    font-size: 1.15rem;
+    margin-bottom: var(--space-lg);
     color: var(--neutral-200);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Media Query para PC */
+@media (min-width: 768px) {
+    .hero {
+        min-height: 95vh;
+    }
+    .hero__title {
+        font-size: 3.8rem;
+    }
+    .hero__description {
+        font-size: 1.25rem;
+    }
+    .hero__actions {
+        flex-direction: row;
+        gap: var(--space-md);
+    }
+    .hero-content .btn {
+        width: auto; /* Botones ancho automático en PC */
+        padding: 14px 32px;
+    }
+}
 /* =========================================
    7. SECCIÓN: MARCAS (SLIDER)
    ========================================= */

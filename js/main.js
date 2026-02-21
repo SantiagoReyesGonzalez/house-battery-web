@@ -159,3 +159,28 @@ if (btnCalcular) {
         }
     });
 }
+
+/* =========================================
+   HERO SLIDER AUTOMÁTICO (Intervalo: 5s)
+   ========================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.hero-slide');
+    const intervalTime = 5000; // 5 segundos exactos
+    let currentSlide = 0;
+
+    if (slides.length === 0) return;
+
+    function nextSlide() {
+        // Reset de estado
+        slides[currentSlide].classList.remove('active');
+        
+        // Incremento circular
+        currentSlide = (currentSlide + 1) % slides.length;
+        
+        // Activación del nuevo slide
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Inicio de la secuencia
+    setInterval(nextSlide, intervalTime);
+});
