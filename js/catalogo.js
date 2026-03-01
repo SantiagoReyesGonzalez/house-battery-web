@@ -12,7 +12,6 @@ const btnLoadMore = document.getElementById('btnLoadMore');
 const searchInput = document.getElementById('searchInput');
 const categorySelect = document.getElementById('categorySelect');
 
-// Modal Referencias
 const modal = document.getElementById('galleryModal');
 const modalImage = document.getElementById('modalImage');
 const btnCloseModal = document.getElementById('closeModal');
@@ -51,14 +50,14 @@ function renderProducts(reset = false) {
     const endIndex = startIndex + ITEMS_PER_PAGE;
     const productsToRender = filteredProducts.slice(startIndex, endIndex);
 
-    productsToRender.forEach(prod => {
+    productsToRender.forEach((prod, index) => {
         const hasMultipleImages = prod.imagenes.length > 1;
-        // Corrección de ruta: El JSON trae "img/...". Agregamos "assets/"
         const mainImage = `assets/${prod.imagenes[0]}`; 
         const tagsHtml = prod.tags.slice(0, 4).map(tag => `<span class="product-card__tag">${tag}</span>`).join('');
         
         const card = document.createElement('article');
-        card.className = 'product-card reveal active';
+        card.className = 'product-card';
+        card.style.animationDelay = `${index * 0.05}s`;
         
         card.innerHTML = `
             <div class="product-card__image-container" data-id="${prod.id}">
@@ -81,14 +80,12 @@ function renderProducts(reset = false) {
             </div>
         `;
 
-        // Evento para abrir modal al hacer clic en la imagen
         const imgContainer = card.querySelector('.product-card__image-container');
         imgContainer.addEventListener('click', () => openModal(prod.imagenes));
 
         grid.appendChild(card);
     });
 
-    // Control del botón "Cargar Más"
     if (endIndex >= filteredProducts.length) {
         btnLoadMore.style.display = 'none';
     } else {
@@ -96,17 +93,72 @@ function renderProducts(reset = false) {
     }
 }
 
-// --- LÓGICA DE FILTRADO ---
+// --- ALGORITMOS DE BÚSQUEDA INTELIGENTE ---
+
+// 1. Quitar tildes y pasar a minúsculas
+const normalizeString = (str) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+};
+
+// 2. Medir similitud de palabras (Distancia de Levenshtein)
+const getLevenshteinDistance = (a, b) => {
+    if(a.length === 0) return b.length; 
+    if(b.length === 0) return a.length; 
+    const matrix = Array(a.length + 1).fill(null).map(() => Array(b.length + 1).fill(null));
+    for(let i = 0; i <= a.length; i++) matrix[i][0] = i;
+    for(let j = 0; j <= b.length; j++) matrix[0][j] = j;
+    for(let i = 1; i <= a.length; i++){
+        for(let j = 1; j <= b.length; j++){
+            const indicator = a[i-1] === b[j-1] ? 0 : 1;
+            matrix[i][j] = Math.min(
+                matrix[i][j-1] + 1, 
+                matrix[i-1][j] + 1, 
+                matrix[i-1][j-1] + indicator
+            );
+        }
+    }
+    return matrix[a.length][b.length];
+};
+
+// 3. Lógica principal de filtrado
 function filterCatalog() {
-    const searchTerm = searchInput.value.toLowerCase();
+    const rawSearchTerm = searchInput.value.trim();
     const selectedCategory = categorySelect.value;
+    
+    // Convertimos la búsqueda en un array de palabras clave normalizadas
+    const searchKeywords = normalizeString(rawSearchTerm).split(/\s+/).filter(w => w.length > 0);
 
     filteredProducts = productosHouseBattery.filter(prod => {
-        const matchesSearch = prod.titulo.toLowerCase().includes(searchTerm) || 
-                              prod.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+        // Validación de categoría
         const matchesCategory = selectedCategory === 'all' || prod.categoria === selectedCategory;
-        
-        return matchesSearch && matchesCategory;
+        if (!matchesCategory) return false;
+
+        // Si no hay texto de búsqueda, muestra todo lo de esa categoría
+        if (searchKeywords.length === 0) return true;
+
+        // Preparamos el texto del producto (Array de palabras del Título + Tags)
+        const productWords = normalizeString(`${prod.titulo} ${prod.tags.join(' ')}`).split(/\s+/);
+
+        // Validamos que CADA palabra buscada coincida con el producto (sin importar el orden)
+        return searchKeywords.every(keyword => {
+            
+            // A. Coincidencia exacta o parcial directa (Ej: "bat" hace match en "bateria")
+            const exactOrPartialMatch = productWords.some(word => word.includes(keyword));
+            if (exactOrPartialMatch) return true;
+
+            // B. Tolerancia a errores (Typo-Tolerance). Permite 1 letra errónea en palabras de >4 letras
+            if (keyword.length > 4) {
+                return productWords.some(word => {
+                    // Solo comparamos con palabras de longitud similar para evitar falsos positivos
+                    if (Math.abs(word.length - keyword.length) <= 2) {
+                        return getLevenshteinDistance(keyword, word.substring(0, keyword.length)) <= 1;
+                    }
+                    return false;
+                });
+            }
+            
+            return false; // Si no cumple ninguna, descarta el producto
+        });
     });
 
     renderProducts(true);
@@ -125,7 +177,6 @@ function openModal(imagenes) {
     updateModalView();
     modal.classList.add('active');
     
-    // Ocultar controles si solo hay 1 imagen
     const showControls = imagenes.length > 1 ? 'block' : 'none';
     btnPrev.style.display = showControls;
     btnNext.style.display = showControls;
@@ -138,7 +189,6 @@ function closeModal() {
 function updateModalView() {
     modalImage.src = `assets/${currentGallery[currentImageIndex]}`;
     
-    // Actualizar indicadores (puntos)
     modalIndicators.innerHTML = '';
     if(currentGallery.length > 1) {
         currentGallery.forEach((_, idx) => {
@@ -177,7 +227,6 @@ function setupEventListeners() {
     btnNext.addEventListener('click', nextImg);
     btnPrev.addEventListener('click', prevImg);
     
-    // Cerrar modal al hacer clic afuera
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     });
