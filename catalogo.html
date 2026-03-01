@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo completo de baterías, pilas y componentes de House Battery Bogotá.">    
+    <meta name="theme-color" content="#FFD600">
+    <title>Catálogo | House Battery</title>
+    <link rel="shortcut icon" href="assets/img/logo-icono.webp" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header header--scrolled">
+        <a href="index.html">
+            <img class="header__logo" src="assets/img/logo-icono.webp" alt="Logo de house battery">
+        </a>
+        <nav class="nav">
+            <button class="nav__toggle" aria-label="Abrir menú">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
+            </button>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="index.html#inicio" class="nav__link">Inicio</a></li>
+                <li class="nav__item"><a href="index.html#servicios" class="nav__link">Servicios</a></li>
+                <li class="nav__item"><a href="catalogo.html" class="nav__link" style="color: var(--color-primary);">Catálogo</a></li>
+                <li class="nav__item"><a href="index.html#contacto" class="nav__link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="catalog-page">
+        <section class="catalog-header">
+            <h1 class="catalog-header__title">Catálogo de Productos</h1>
+            <p class="catalog-header__desc">Encuentra la energía exacta para tu proyecto.</p>
+            
+            <div class="catalog-filters">
+                <input type="text" id="searchInput" class="calc-input" placeholder="Buscar por modelo, marca o capacidad...">
+                <select id="categorySelect" class="calc-input">
+                    <option value="all">Todas las categorías</option>
+                    </select>
+            </div>
+        </section>
+
+        <section class="catalog-container">
+            <div id="catalogGrid" class="catalog-grid">
+                </div>
+            
+            <div class="catalog-actions">
+                <button id="btnLoadMore" class="btn btn--secondary" style="display: none;">Cargar más productos</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="galleryModal" class="modal">
+        <div class="modal__content">
+            <button class="modal__close" id="closeModal">&times;</button>
+            <div class="modal__slider">
+                <button class="modal__btn modal__btn--prev" id="prevImage">&#10094;</button>
+                <img id="modalImage" src="" alt="Vista de producto" class="modal__img">
+                <button class="modal__btn modal__btn--next" id="nextImage">&#10095;</button>
+            </div>
+            <div class="modal__indicators" id="modalIndicators"></div>
+        </div>
+    </div>
+
+    <script type="module" src="js/catalogo.js"></script>
+</body>
+</html>
