@@ -1328,49 +1328,104 @@ button, input, select, textarea {
 }
 
 /* =========================================
-   13. FOOTER
+   18. FOOTER MODERNO
    ========================================= */
 .footer {
-    background-color: #050505; 
-    color: var(--text-muted);
+    background-color: var(--neutral-950);
+    border-top: 1px solid var(--neutral-900);
     padding-top: var(--space-xl);
-    border-top: 1px solid var(--neutral-800);
+    color: var(--neutral-200);
     font-size: 0.95rem;
+    position: relative;
+    z-index: 10;
 }
 
 .footer__container {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 var(--space-md);
+    padding: 0 var(--space-md) var(--space-xl);
     display: grid;
+    grid-template-columns: 1fr;
     gap: var(--space-xl);
-    grid-template-columns: 1fr; 
+}
+
+@media (min-width: 768px) {
+    .footer__container {
+        grid-template-columns: 1.5fr 1fr 1.2fr;
+        gap: var(--space-lg);
+    }
+}
+
+.footer__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer__logo-img {
+    width: 50px;
+    margin-bottom: var(--space-sm);
 }
 
 .footer__logo {
-    color: var(--brand-500);
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 2px;
+    color: var(--neutral-50);
+    font-size: 1.4rem;
     margin-bottom: var(--space-sm);
-    text-transform: uppercase;
-}
-
-.footer__heading {
-    color: var(--text-main);
-    font-size: 1.1rem;
-    margin-bottom: var(--space-md);
-    font-weight: 700;
-    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .footer__desc {
     line-height: 1.6;
-    max-width: 300px;
+    margin-bottom: var(--space-lg);
 }
 
-.footer__nav, 
-.footer__info {
+/* Redes Sociales */
+.footer__socials {
+    display: flex;
+    gap: 12px;
+}
+
+.social-link {
+    color: var(--neutral-50);
+    background-color: var(--neutral-900);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    border: 1px solid var(--neutral-800);
+}
+
+.social-link:hover {
+    background-color: var(--brand-500);
+    color: var(--neutral-950);
+    transform: translateY(-4px);
+    border-color: var(--brand-500);
+}
+
+/* Encabezados de Columna */
+.footer__heading {
+    color: var(--neutral-50);
+    font-size: 1.2rem;
+    margin-bottom: var(--space-md);
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.footer__heading::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--brand-500);
+}
+
+/* Enlaces de Navegación */
+.footer__nav {
     list-style: none;
     padding: 0;
     display: flex;
@@ -1379,31 +1434,81 @@ button, input, select, textarea {
 }
 
 .footer__nav a {
-    color: var(--text-muted);
+    color: var(--neutral-200);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s, padding-left 0.3s;
+    display: inline-block;
 }
 
 .footer__nav a:hover {
     color: var(--brand-500);
-    padding-left: 5px; 
+    padding-left: 8px; /* Efecto flecha visual */
+}
+
+/* Info Contacto */
+.footer__info {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .footer__info li {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    line-height: 1.4;
+    gap: 12px;
+    line-height: 1.5;
 }
 
+.footer__info svg {
+    color: var(--brand-500);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Barra Inferior (Copyright & Pagos) */
 .footer__bottom {
-    margin-top: var(--space-xl);
+    background-color: #08080a; /* Contraste sutil */
     padding: var(--space-md);
-    background-color: #000;
-    text-align: center;
-    font-size: 0.85rem;
     border-top: 1px solid var(--neutral-900);
+}
+
+.footer__bottom-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .footer__bottom-container {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+.footer__payments {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.payment-badge {
+    background-color: var(--neutral-900);
     color: var(--neutral-200);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--neutral-800);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* =========================================
@@ -1791,6 +1896,24 @@ button, input, select, textarea {
     box-shadow: 0 10px 25px rgba(0,0,0,0.8);
     transform: translateY(-40px);
     z-index: 2;
+}
+/* --- ANIMACIÓN DE ENTRADA CATÁLOGO --- */
+@keyframes fadeUpCard {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    /* ... tus estilos actuales ... */
+    opacity: 0; /* Inicia oculta para la animación */
+    animation: fadeUpCard 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity; /* Optimización GPU */
 }
 
 /* Media Query Escritorio */
