@@ -4,7 +4,6 @@ import productosHouseBattery from './Catalogo_Refactorizado.js';
 const ITEMS_PER_PAGE = 12;
 let currentPage = 1;
 let filteredProducts = [...productosHouseBattery];
-let top4Categories = [];
 const WHATSAPP_NUMBER = "573138019357";
 
 // --- REFERENCIAS DOM ---
@@ -38,34 +37,60 @@ function init() {
     setupEventListeners();
 }
 
+// --- CATEGORIZACIÓN SEMÁNTICA (MACRO-CATEGORÍAS) ---
+function getMacroCategory(categoriaOriginal) {
+    const cat = categoriaOriginal.toLowerCase();
+    
+    // 1. Prioridad absoluta: Baterías y Celdas (Captura "Baterías recargables", "Pilas para radio", etc.)
+    if (cat.includes('batería') || cat.includes('bateria') || cat.includes('pila') || cat.includes('celda') || cat.includes('pack') || cat.includes('recargable')) {
+        return 'Baterías y Celdas';
+    }
+
+    // 2. Equipos de Tecnología (Excluye accesorios y baterías ya capturadas)
+    if (cat.includes('teléfono') || cat.includes('telefono') || cat.includes('radio') || cat.includes('comunicación') || cat.includes('comunicacion') || cat.includes('timbre') || cat.includes('herramienta') || cat.includes('equipo') || cat.includes('soldadura') || cat.includes('tester') || cat.includes('tecnología') || cat.includes('multímetro')) {
+        return 'Equipos de Tecnología';
+    }
+
+    // 3. Respaldo de Energía
+    if (cat.includes('ups') || cat.includes('regulador') || cat.includes('inversor') || cat.includes('respaldo') || cat.includes('planta')) {
+        return 'Respaldo de Energía';
+    }
+
+    // 4. Accesorios y Componentes
+    if (cat.includes('cargador') || cat.includes('cable') || cat.includes('bms') || cat.includes('accesorio') || cat.includes('conector') || cat.includes('componente')) {
+        return 'Accesorios y Componentes';
+    }
+
+    // 5. Fallback
+    return 'Otros Componentes';
+}
+
 // --- RENDERIZADO DE CATEGORÍAS ---
 function renderCategories() {
     categoriesGrid.innerHTML = '';
-    const categoriesMap = {};
+    const macroMap = {};
 
     productosHouseBattery.forEach(prod => {
-        if (!categoriesMap[prod.categoria]) {
-            categoriesMap[prod.categoria] = {
-                count: 0,
-                image: prod.imagenes[0]
-            };
+        const macro = getMacroCategory(prod.categoria);
+        if (!macroMap[macro]) {
+            macroMap[macro] = { count: 0, image: prod.imagenes[0] };
         }
-        categoriesMap[prod.categoria].count++;
+        macroMap[macro].count++;
     });
 
-    const sortedCategories = Object.keys(categoriesMap).sort((a, b) => categoriesMap[b].count - categoriesMap[a].count);
-    top4Categories = sortedCategories.slice(0, 4);
-    const otherCategories = sortedCategories.slice(4);
+    const order = [
+        'Baterías y Celdas', 
+        'Respaldo de Energía', 
+        'Equipos de Tecnología', 
+        'Accesorios y Componentes', 
+        'Otros Componentes'
+    ];
 
-    top4Categories.forEach((cat, index) => {
-        createCategoryCard(cat, categoriesMap[cat].count, categoriesMap[cat].image, index, cat);
+    order.forEach((macro, index) => {
+        if (macroMap[macro]) {
+            createCategoryCard(macro, macroMap[macro].count, macroMap[macro].image, index, macro);
+        }
     });
-
-    if (otherCategories.length > 0) {
-        const othersCount = otherCategories.reduce((sum, cat) => sum + categoriesMap[cat].count, 0);
-        const othersImage = categoriesMap[otherCategories[0]].image; 
-        createCategoryCard("Otros Componentes", othersCount, othersImage, 4, 'others');
-    }
 }
 
 function createCategoryCard(title, count, image, index, filterValue) {
@@ -97,18 +122,13 @@ function createCategoryCard(title, count, image, index, filterValue) {
 function populateCategories() {
     categorySelect.innerHTML = '<option value="all">Todas las categorías</option>';
     
-    const categories = [...new Set(productosHouseBattery.map(p => p.categoria))].sort();
-    categories.forEach(cat => {
+    const macros = [...new Set(productosHouseBattery.map(p => getMacroCategory(p.categoria)))].sort();
+    macros.forEach(macro => {
         const option = document.createElement('option');
-        option.value = cat;
-        option.textContent = cat;
+        option.value = macro;
+        option.textContent = macro;
         categorySelect.appendChild(option);
     });
-
-    const optionOthers = document.createElement('option');
-    optionOthers.value = 'others';
-    optionOthers.textContent = 'Otros Componentes';
-    categorySelect.appendChild(optionOthers);
 }
 
 function renderProducts(reset = false) {
@@ -142,7 +162,7 @@ function renderProducts(reset = false) {
                 ` : ''}
             </div>
             <div class="product-card__content">
-                <span class="product-card__category">${prod.categoria}</span>
+                <span class="product-card__category">${getMacroCategory(prod.categoria)} - ${prod.categoria}</span>
                 <h3 class="product-card__title">${prod.titulo}</h3>
                 <p class="product-card__desc" title="Clic para ver más detalles">${prod.descripcion}</p>
                 <div class="product-card__tags">${tagsHtml}</div>
@@ -153,7 +173,6 @@ function renderProducts(reset = false) {
             </div>
         `;
 
-        // Al hacer clic en cualquier parte de la tarjeta, abre el modal
         card.addEventListener('click', () => openModal(prod));
 
         catalogGrid.appendChild(card);
@@ -214,10 +233,8 @@ function filterCatalog() {
     const searchKeywords = normalizeString(rawSearchTerm).split(/\s+/).filter(w => w.length > 0);
 
     filteredProducts = productosHouseBattery.filter(prod => {
-        const matchesCategory = 
-            selectedCategory === 'all' || 
-            prod.categoria === selectedCategory || 
-            (selectedCategory === 'others' && !top4Categories.includes(prod.categoria));
+        const macro = getMacroCategory(prod.categoria);
+        const matchesCategory = selectedCategory === 'all' || macro === selectedCategory;
             
         if (!matchesCategory) return false;
         if (searchKeywords.length === 0) return true;
@@ -254,10 +271,9 @@ function openModal(producto) {
     currentGallery = producto.imagenes;
     currentImageIndex = 0;
     
-    // Poblar información de texto
     modalTitle.textContent = producto.titulo;
     modalDescription.textContent = producto.descripcion;
-    modalCategory.textContent = producto.categoria;
+    modalCategory.textContent = `${getMacroCategory(producto.categoria)} - ${producto.categoria}`;
     modalWhatsappBtn.href = generateWhatsAppLink(producto);
 
     updateModalView();
