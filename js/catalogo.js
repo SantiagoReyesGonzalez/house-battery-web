@@ -7,7 +7,11 @@ let filteredProducts = [...productosHouseBattery];
 const WHATSAPP_NUMBER = "573138019357";
 
 // --- REFERENCIAS DOM ---
-const grid = document.getElementById('catalogGrid');
+const categoriesGrid = document.getElementById('categoriesGrid');
+const catalogGrid = document.getElementById('catalogGrid');
+const catalogFilters = document.getElementById('catalogFilters');
+const btnViewAll = document.getElementById('btnViewAll');
+const btnBackCategories = document.getElementById('btnBackCategories');
 const btnLoadMore = document.getElementById('btnLoadMore');
 const searchInput = document.getElementById('searchInput');
 const categorySelect = document.getElementById('categorySelect');
@@ -25,11 +29,53 @@ let currentImageIndex = 0;
 // --- INICIALIZACIÓN ---
 function init() {
     populateCategories();
-    renderProducts();
+    renderCategories();
     setupEventListeners();
 }
 
-// --- RENDERIZADO ---
+// --- RENDERIZADO DE CATEGORÍAS ---
+function renderCategories() {
+    categoriesGrid.innerHTML = '';
+    const categoriesMap = {};
+
+    productosHouseBattery.forEach(prod => {
+        if (!categoriesMap[prod.categoria]) {
+            categoriesMap[prod.categoria] = {
+                count: 0,
+                image: prod.imagenes[0]
+            };
+        }
+        categoriesMap[prod.categoria].count++;
+    });
+
+    Object.keys(categoriesMap).sort().forEach((cat, index) => {
+        const data = categoriesMap[cat];
+        const card = document.createElement('article');
+        card.className = 'category-card product-card';
+        card.style.animationDelay = `${index * 0.05}s`;
+        
+        card.innerHTML = `
+            <div class="product-card__image-container">
+                <img src="assets/${data.image}" alt="Categoría ${cat}" class="product-card__img" loading="lazy">
+            </div>
+            <div class="product-card__content" style="text-align: center; justify-content: center; align-items: center;">
+                <h3 class="product-card__title" style="margin-bottom: 8px;">${cat}</h3>
+                <span class="product-card__category" style="margin-bottom: 0;">${data.count} Referencias</span>
+            </div>
+        `;
+
+        card.addEventListener('click', () => {
+            categorySelect.value = cat;
+            searchInput.value = '';
+            showProductsView();
+            filterCatalog();
+        });
+
+        categoriesGrid.appendChild(card);
+    });
+}
+
+// --- RENDERIZADO DE PRODUCTOS ---
 function populateCategories() {
     const categories = [...new Set(productosHouseBattery.map(p => p.categoria))].sort();
     categories.forEach(cat => {
@@ -42,7 +88,7 @@ function populateCategories() {
 
 function renderProducts(reset = false) {
     if (reset) {
-        grid.innerHTML = '';
+        catalogGrid.innerHTML = '';
         currentPage = 1;
     }
 
@@ -72,6 +118,7 @@ function renderProducts(reset = false) {
             <div class="product-card__content">
                 <span class="product-card__category">${prod.categoria}</span>
                 <h3 class="product-card__title">${prod.titulo}</h3>
+                <p class="product-card__desc" title="${prod.descripcion}">${prod.descripcion}</p>
                 <div class="product-card__tags">${tagsHtml}</div>
                 <a href="${generateWhatsAppLink(prod)}" class="btn btn--primary" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
@@ -83,7 +130,7 @@ function renderProducts(reset = false) {
         const imgContainer = card.querySelector('.product-card__image-container');
         imgContainer.addEventListener('click', () => openModal(prod.imagenes));
 
-        grid.appendChild(card);
+        catalogGrid.appendChild(card);
     });
 
     if (endIndex >= filteredProducts.length) {
@@ -93,14 +140,29 @@ function renderProducts(reset = false) {
     }
 }
 
-// --- ALGORITMOS DE BÚSQUEDA INTELIGENTE ---
+// --- TRANSICIONES DE VISTA ---
+function showProductsView() {
+    categoriesGrid.style.display = 'none';
+    btnViewAll.style.display = 'none';
+    catalogGrid.style.display = 'grid';
+    catalogFilters.style.display = 'grid';
+    btnBackCategories.style.display = 'inline-block';
+}
 
-// 1. Quitar tildes y pasar a minúsculas
+function showCategoriesView() {
+    catalogGrid.style.display = 'none';
+    catalogFilters.style.display = 'none';
+    btnLoadMore.style.display = 'none';
+    btnBackCategories.style.display = 'none';
+    categoriesGrid.style.display = 'grid';
+    btnViewAll.style.display = 'inline-block';
+}
+
+// --- ALGORITMOS DE BÚSQUEDA INTELIGENTE ---
 const normalizeString = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 };
 
-// 2. Medir similitud de palabras (Distancia de Levenshtein)
 const getLevenshteinDistance = (a, b) => {
     if(a.length === 0) return b.length; 
     if(b.length === 0) return a.length; 
@@ -120,44 +182,31 @@ const getLevenshteinDistance = (a, b) => {
     return matrix[a.length][b.length];
 };
 
-// 3. Lógica principal de filtrado
 function filterCatalog() {
     const rawSearchTerm = searchInput.value.trim();
     const selectedCategory = categorySelect.value;
-    
-    // Convertimos la búsqueda en un array de palabras clave normalizadas
     const searchKeywords = normalizeString(rawSearchTerm).split(/\s+/).filter(w => w.length > 0);
 
     filteredProducts = productosHouseBattery.filter(prod => {
-        // Validación de categoría
         const matchesCategory = selectedCategory === 'all' || prod.categoria === selectedCategory;
         if (!matchesCategory) return false;
-
-        // Si no hay texto de búsqueda, muestra todo lo de esa categoría
         if (searchKeywords.length === 0) return true;
 
-        // Preparamos el texto del producto (Array de palabras del Título + Tags)
-        const productWords = normalizeString(`${prod.titulo} ${prod.tags.join(' ')}`).split(/\s+/);
+        const productWords = normalizeString(`${prod.titulo} ${prod.descripcion} ${prod.tags.join(' ')}`).split(/\s+/);
 
-        // Validamos que CADA palabra buscada coincida con el producto (sin importar el orden)
         return searchKeywords.every(keyword => {
-            
-            // A. Coincidencia exacta o parcial directa (Ej: "bat" hace match en "bateria")
             const exactOrPartialMatch = productWords.some(word => word.includes(keyword));
             if (exactOrPartialMatch) return true;
 
-            // B. Tolerancia a errores (Typo-Tolerance). Permite 1 letra errónea en palabras de >4 letras
             if (keyword.length > 4) {
                 return productWords.some(word => {
-                    // Solo comparamos con palabras de longitud similar para evitar falsos positivos
                     if (Math.abs(word.length - keyword.length) <= 2) {
                         return getLevenshteinDistance(keyword, word.substring(0, keyword.length)) <= 1;
                     }
                     return false;
                 });
             }
-            
-            return false; // Si no cumple ninguna, descarta el producto
+            return false;
         });
     });
 
@@ -215,6 +264,15 @@ function prevImg() {
 
 // --- EVENT LISTENERS ---
 function setupEventListeners() {
+    btnViewAll.addEventListener('click', () => {
+        categorySelect.value = 'all';
+        searchInput.value = '';
+        showProductsView();
+        filterCatalog();
+    });
+
+    btnBackCategories.addEventListener('click', showCategoriesView);
+
     btnLoadMore.addEventListener('click', () => {
         currentPage++;
         renderProducts();

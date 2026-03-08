@@ -696,44 +696,46 @@ const productosHouseBattery = [
     ],
     "alt": "Cable cargador USB inteligente de 7.4V para baterías Li-ion de RC"
   },
-  {
-    "id": 47,
-    "titulo": "Cargador USB Compacto para Baterías Li-ion 7.4V",
-    "categoria": "Cargadores y Accesorios",
-    "descripcion": "Cable de carga USB con entrada de 5V (1-2A) y salida de 7.4V a 1000mA. Ideal para baterías de iones de litio de juguetes RC o drones. Su diseño compacto permite la carga desde cualquier puerto USB estándar de forma estable.",
-    "imagenes": [
-      "img/catalogo/Ensambles_de_Litio/047-cargador-usb-compacto-para-baterias-li-ion-74v_01.webp"
-    ],
-    "tags": [
-      "cargador usb",
-      "7.4v",
-      "li-ion",
-      "rc",
-      "drones",
-      "litio",
-      "compacto"
-    ],
-    "alt": "Cargador USB compacto de 7.4V para baterías de litio RC"
-  },
-  {
+{
+  "id": 47,
+  "titulo": "Set de Cables de Prueba con Pinzas Caimán (10 piezas)",
+  "categoria": "Herramientas y Accesorios",
+  "descripcion": "Juego de cables puente con pinzas tipo caimán (cocodrilo) en ambos extremos. Ideales para realizar conexiones temporales de forma rápida y segura en prototipado, pruebas de circuitos y laboratorios de electrónica. Incluye 10 cables en 5 colores estándar (rojo, negro, amarillo, verde y blanco) para facilitar la identificación de señales.",
+  "imagenes": [
+    "img/catalogo/Ensambles_de_Litio/047-set-cables-prueba-caiman_01.webp"
+  ],
+  "tags": [
+    "caimanes",
+    "pinzas cocodrilo",
+    "pruebas",
+    "electronica",
+    "prototipado",
+    "conexiones",
+    "puentes",
+    "accesorios"
+  ],
+  "alt": "Juego de 10 cables de prueba con pinzas tipo caimán en colores variados para electrónica"
+},
+{
     "id": 48,
-    "titulo": "Kit Cables de Prueba con Pinzas Caimán",
-    "categoria": "Herramientas y Accesorios",
-    "descripcion": "Conjunto de cables multímetros con pinzas tipo caimán en ambos extremos, disponibles en varios colores para identificación de circuitos. Ideales para prototipado, pruebas electrónicas y proyectos de laboratorio que requieren conexiones rápidas y seguras.",
+    "titulo": "Kit de Extensiones Eléctricas Variadas (Hogar y Oficina)",
+    "categoria": "Electricidad y Ferretería",
+    "descripcion": "Conjunto de extensiones eléctricas de alta resistencia disponibles en diversas longitudes, incluyendo medidas de 3 pies (0.9m), 5 metros y 6 metros. Fabricadas con recubrimiento de PVC en colores blanco y gris, ideales para ampliar el alcance de tomacorrientes para electrodomésticos, herramientas y equipos de cómputo.",
     "imagenes": [
       "img/catalogo/General/048-kit-cables-de-prueba-con-pinzas-caiman_01.webp"
     ],
     "tags": [
-      "cables",
-      "prueba",
-      "pinzas",
-      "caimán",
-      "multímetro",
-      "prototipado",
-      "electrónica"
+      "extensión eléctrica",
+      "cable",
+      "hogar",
+      "oficina",
+      "6 metros",
+      "5 metros",
+      "3 pies",
+      "ferretería"
     ],
-    "alt": "Set de cables de prueba multicolor con pinzas caimán"
-  },
+    "alt": "Cuatro extensiones eléctricas enrolladas de diferentes marcas y longitudes en colores blanco y gris"
+},
   {
     "id": 49,
     "titulo": "Extensiones Eléctricas 5m/6m (Polo a Tierra)",
