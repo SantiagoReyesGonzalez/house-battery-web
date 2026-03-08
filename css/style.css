@@ -102,6 +102,10 @@ button, input, select, textarea {
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes goldShine {
+    to { background-position: -200% center; }
+}
+
 /* =========================================
    4. COMPONENTES REUTILIZABLES
    ========================================= */
@@ -288,14 +292,26 @@ button, input, select, textarea {
 }
 
 .hero__title--brand {
-    color: var(--brand-500);
     display: block;
     font-size: 1.3em;
     text-transform: uppercase;
     letter-spacing: 3px;
     margin-bottom: var(--space-sm);
-    text-shadow: 0 2px 15px rgba(255, 214, 0, 0.4);
     font-weight: 800;
+    background: linear-gradient(
+        to right, 
+        var(--brand-600) 0%, 
+        var(--brand-400) 20%, 
+        #ffffff 40%, 
+        var(--brand-400) 60%, 
+        var(--brand-600) 100%
+    );
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: goldShine 4s linear infinite;
+    filter: drop-shadow(0 2px 15px rgba(255, 214, 0, 0.4));
 }
 
 .hero__description {
@@ -1577,6 +1593,29 @@ button, input, select, textarea {
     flex-wrap: wrap;
 }
 
+/* Botón Ver todo el catálogo animado con Oro */
+#btnViewAll, .btn--gold {
+    background: linear-gradient(
+        to right, 
+        var(--brand-600) 0%, 
+        var(--brand-400) 20%, 
+        #ffffff 40%, 
+        var(--brand-400) 60%, 
+        var(--brand-600) 100%
+    );
+    background-size: 200% auto;
+    color: var(--neutral-950);
+    animation: goldShine 3s linear infinite;
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 214, 0, 0.2);
+    font-weight: 800;
+}
+
+#btnViewAll:hover, .btn--gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 214, 0, 0.5);
+}
+
 .catalog-filters {
     display: grid;
     grid-template-columns: 1fr;
@@ -1704,7 +1743,7 @@ button, input, select, textarea {
 .product-card__title {
     font-size: 1.1rem;
     color: var(--text-main);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
