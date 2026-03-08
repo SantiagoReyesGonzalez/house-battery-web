@@ -4,6 +4,7 @@ import productosHouseBattery from './Catalogo_Refactorizado.js';
 const ITEMS_PER_PAGE = 12;
 let currentPage = 1;
 let filteredProducts = [...productosHouseBattery];
+let top4Categories = [];
 const WHATSAPP_NUMBER = "573138019357";
 
 // --- REFERENCIAS DOM ---
@@ -18,6 +19,10 @@ const categorySelect = document.getElementById('categorySelect');
 
 const modal = document.getElementById('galleryModal');
 const modalImage = document.getElementById('modalImage');
+const modalTitle = document.getElementById('modalTitle');
+const modalDescription = document.getElementById('modalDescription');
+const modalCategory = document.getElementById('modalCategory');
+const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
 const btnCloseModal = document.getElementById('closeModal');
 const btnPrev = document.getElementById('prevImage');
 const btnNext = document.getElementById('nextImage');
@@ -28,8 +33,8 @@ let currentImageIndex = 0;
 
 // --- INICIALIZACIÓN ---
 function init() {
-    populateCategories();
     renderCategories();
+    populateCategories();
     setupEventListeners();
 }
 
@@ -48,35 +53,50 @@ function renderCategories() {
         categoriesMap[prod.categoria].count++;
     });
 
-    Object.keys(categoriesMap).sort().forEach((cat, index) => {
-        const data = categoriesMap[cat];
-        const card = document.createElement('article');
-        card.className = 'category-card product-card';
-        card.style.animationDelay = `${index * 0.05}s`;
-        
-        card.innerHTML = `
-            <div class="product-card__image-container">
-                <img src="assets/${data.image}" alt="Categoría ${cat}" class="product-card__img" loading="lazy">
-            </div>
-            <div class="product-card__content" style="text-align: center; justify-content: center; align-items: center;">
-                <h3 class="product-card__title" style="margin-bottom: 8px;">${cat}</h3>
-                <span class="product-card__category" style="margin-bottom: 0;">${data.count} Referencias</span>
-            </div>
-        `;
+    const sortedCategories = Object.keys(categoriesMap).sort((a, b) => categoriesMap[b].count - categoriesMap[a].count);
+    top4Categories = sortedCategories.slice(0, 4);
+    const otherCategories = sortedCategories.slice(4);
 
-        card.addEventListener('click', () => {
-            categorySelect.value = cat;
-            searchInput.value = '';
-            showProductsView();
-            filterCatalog();
-        });
-
-        categoriesGrid.appendChild(card);
+    top4Categories.forEach((cat, index) => {
+        createCategoryCard(cat, categoriesMap[cat].count, categoriesMap[cat].image, index, cat);
     });
+
+    if (otherCategories.length > 0) {
+        const othersCount = otherCategories.reduce((sum, cat) => sum + categoriesMap[cat].count, 0);
+        const othersImage = categoriesMap[otherCategories[0]].image; 
+        createCategoryCard("Otros Componentes", othersCount, othersImage, 4, 'others');
+    }
+}
+
+function createCategoryCard(title, count, image, index, filterValue) {
+    const card = document.createElement('article');
+    card.className = 'category-card product-card';
+    card.style.animationDelay = `${index * 0.05}s`;
+    
+    card.innerHTML = `
+        <div class="product-card__image-container">
+            <img src="assets/${image}" alt="${title}" class="product-card__img" loading="lazy">
+        </div>
+        <div class="product-card__content" style="text-align: center; justify-content: center; align-items: center;">
+            <h3 class="product-card__title" style="margin-bottom: 8px;">${title}</h3>
+            <span class="product-card__category" style="margin-bottom: 0;">${count} Referencias</span>
+        </div>
+    `;
+
+    card.addEventListener('click', () => {
+        categorySelect.value = filterValue;
+        searchInput.value = '';
+        showProductsView();
+        filterCatalog();
+    });
+
+    categoriesGrid.appendChild(card);
 }
 
 // --- RENDERIZADO DE PRODUCTOS ---
 function populateCategories() {
+    categorySelect.innerHTML = '<option value="all">Todas las categorías</option>';
+    
     const categories = [...new Set(productosHouseBattery.map(p => p.categoria))].sort();
     categories.forEach(cat => {
         const option = document.createElement('option');
@@ -84,6 +104,11 @@ function populateCategories() {
         option.textContent = cat;
         categorySelect.appendChild(option);
     });
+
+    const optionOthers = document.createElement('option');
+    optionOthers.value = 'others';
+    optionOthers.textContent = 'Otros Componentes';
+    categorySelect.appendChild(optionOthers);
 }
 
 function renderProducts(reset = false) {
@@ -103,6 +128,7 @@ function renderProducts(reset = false) {
         
         const card = document.createElement('article');
         card.className = 'product-card';
+        card.style.cursor = 'pointer'; 
         card.style.animationDelay = `${index * 0.05}s`;
         
         card.innerHTML = `
@@ -118,17 +144,17 @@ function renderProducts(reset = false) {
             <div class="product-card__content">
                 <span class="product-card__category">${prod.categoria}</span>
                 <h3 class="product-card__title">${prod.titulo}</h3>
-                <p class="product-card__desc" title="${prod.descripcion}">${prod.descripcion}</p>
+                <p class="product-card__desc" title="Clic para ver más detalles">${prod.descripcion}</p>
                 <div class="product-card__tags">${tagsHtml}</div>
-                <a href="${generateWhatsAppLink(prod)}" class="btn btn--primary" target="_blank">
+                <a href="${generateWhatsAppLink(prod)}" class="btn btn--primary btn-cotizar-card" target="_blank" onclick="event.stopPropagation();">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                     Cotizar
                 </a>
             </div>
         `;
 
-        const imgContainer = card.querySelector('.product-card__image-container');
-        imgContainer.addEventListener('click', () => openModal(prod.imagenes));
+        // Al hacer clic en cualquier parte de la tarjeta, abre el modal
+        card.addEventListener('click', () => openModal(prod));
 
         catalogGrid.appendChild(card);
     });
@@ -188,7 +214,11 @@ function filterCatalog() {
     const searchKeywords = normalizeString(rawSearchTerm).split(/\s+/).filter(w => w.length > 0);
 
     filteredProducts = productosHouseBattery.filter(prod => {
-        const matchesCategory = selectedCategory === 'all' || prod.categoria === selectedCategory;
+        const matchesCategory = 
+            selectedCategory === 'all' || 
+            prod.categoria === selectedCategory || 
+            (selectedCategory === 'others' && !top4Categories.includes(prod.categoria));
+            
         if (!matchesCategory) return false;
         if (searchKeywords.length === 0) return true;
 
@@ -219,14 +249,21 @@ function generateWhatsAppLink(producto) {
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
 }
 
-// --- LÓGICA DEL MODAL GALERÍA ---
-function openModal(imagenes) {
-    currentGallery = imagenes;
+// --- LÓGICA DEL MODAL EXTENDIDO ---
+function openModal(producto) {
+    currentGallery = producto.imagenes;
     currentImageIndex = 0;
+    
+    // Poblar información de texto
+    modalTitle.textContent = producto.titulo;
+    modalDescription.textContent = producto.descripcion;
+    modalCategory.textContent = producto.categoria;
+    modalWhatsappBtn.href = generateWhatsAppLink(producto);
+
     updateModalView();
     modal.classList.add('active');
     
-    const showControls = imagenes.length > 1 ? 'block' : 'none';
+    const showControls = producto.imagenes.length > 1 ? 'block' : 'none';
     btnPrev.style.display = showControls;
     btnNext.style.display = showControls;
 }

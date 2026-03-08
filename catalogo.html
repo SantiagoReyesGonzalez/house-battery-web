@@ -60,7 +60,6 @@
 
         <section class="catalog-container">
             <div id="categoriesGrid" class="catalog-grid"></div>
-
             <div id="catalogGrid" class="catalog-grid" style="display: none;"></div>
             
             <div class="catalog-actions">
@@ -73,18 +72,32 @@
     <div id="galleryModal" class="modal">
         <div class="modal__content">
             <button class="modal__close" id="closeModal">&times;</button>
-            <div class="modal__slider">
-                <button class="modal__btn modal__btn--prev" id="prevImage">&#10094;</button>
-                <img id="modalImage" src="" alt="Vista de producto" class="modal__img">
-                <button class="modal__btn modal__btn--next" id="nextImage">&#10095;</button>
+            <div class="modal__layout">
+                <div class="modal__slider-container">
+                    <div class="modal__slider">
+                        <button class="modal__btn modal__btn--prev" id="prevImage">&#10094;</button>
+                        <img id="modalImage" src="" alt="Vista de producto" class="modal__img">
+                        <button class="modal__btn modal__btn--next" id="nextImage">&#10095;</button>
+                    </div>
+                    <div class="modal__indicators" id="modalIndicators"></div>
+                </div>
+                <div class="modal__info">
+                    <span id="modalCategory" class="product-card__category" style="font-size: 0.9rem;"></span>
+                    <h2 id="modalTitle" class="modal__title"></h2>
+                    <div class="modal__scroll-desc">
+                        <p id="modalDescription" class="modal__description"></p>
+                    </div>
+                    <a id="modalWhatsappBtn" href="#" class="btn btn--primary" target="_blank" style="margin-top: auto;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        Cotizar Producto
+                    </a>
+                </div>
             </div>
-            <div class="modal__indicators" id="modalIndicators"></div>
         </div>
     </div>
 
     <footer class="footer">
         <div class="footer__container reveal">
-            
             <div class="footer__brand">
                 <img src="assets/img/logo-icono.webp" alt="Logo House Battery" class="footer__logo-img" loading="lazy">
                 <h2 class="footer__logo">HOUSE BATTERY</h2>
@@ -133,7 +146,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
 
         <div class="footer__bottom">
