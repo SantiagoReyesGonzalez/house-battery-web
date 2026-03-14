@@ -1,12 +1,10 @@
 import productosHouseBattery from './Catalogo_Refactorizado.js';
 
-// --- CONFIGURACIÓN & ESTADO ---
 const ITEMS_PER_PAGE = 12;
 let currentPage = 1;
 let filteredProducts = [...productosHouseBattery];
 const WHATSAPP_NUMBER = "573138019357";
 
-// --- REFERENCIAS DOM ---
 const categoriesGrid = document.getElementById('categoriesGrid');
 const catalogGrid = document.getElementById('catalogGrid');
 const catalogFilters = document.getElementById('catalogFilters');
@@ -30,42 +28,38 @@ const modalIndicators = document.getElementById('modalIndicators');
 let currentGallery = [];
 let currentImageIndex = 0;
 
-// --- INICIALIZACIÓN ---
 function init() {
     renderCategories();
     populateCategories();
     setupEventListeners();
 }
 
-// --- CATEGORIZACIÓN SEMÁNTICA (MACRO-CATEGORÍAS) ---
 function getMacroCategory(categoriaOriginal) {
     const cat = categoriaOriginal.toLowerCase();
     
-    // 1. Prioridad absoluta: Baterías y Celdas (Captura "Baterías recargables", "Pilas para radio", etc.)
+    if (cat.includes('estudiantil') || cat.includes('proyecto')) {
+        return 'Proyectos Estudiantiles';
+    }
+
     if (cat.includes('batería') || cat.includes('bateria') || cat.includes('pila') || cat.includes('celda') || cat.includes('pack') || cat.includes('recargable')) {
         return 'Baterías y Celdas';
     }
 
-    // 2. Equipos de Tecnología (Excluye accesorios y baterías ya capturadas)
     if (cat.includes('teléfono') || cat.includes('telefono') || cat.includes('radio') || cat.includes('comunicación') || cat.includes('comunicacion') || cat.includes('timbre') || cat.includes('herramienta') || cat.includes('equipo') || cat.includes('soldadura') || cat.includes('tester') || cat.includes('tecnología') || cat.includes('multímetro')) {
         return 'Equipos de Tecnología';
     }
 
-    // 3. Respaldo de Energía
     if (cat.includes('ups') || cat.includes('regulador') || cat.includes('inversor') || cat.includes('respaldo') || cat.includes('planta')) {
         return 'Respaldo de Energía';
     }
 
-    // 4. Accesorios y Componentes
     if (cat.includes('cargador') || cat.includes('cable') || cat.includes('bms') || cat.includes('accesorio') || cat.includes('conector') || cat.includes('componente')) {
         return 'Accesorios y Componentes';
     }
 
-    // 5. Fallback
     return 'Otros Componentes';
 }
 
-// --- RENDERIZADO DE CATEGORÍAS ---
 function renderCategories() {
     categoriesGrid.innerHTML = '';
     const macroMap = {};
@@ -79,6 +73,7 @@ function renderCategories() {
     });
 
     const order = [
+        'Proyectos Estudiantiles',
         'Baterías y Celdas', 
         'Respaldo de Energía', 
         'Equipos de Tecnología', 
@@ -118,7 +113,6 @@ function createCategoryCard(title, count, image, index, filterValue) {
     categoriesGrid.appendChild(card);
 }
 
-// --- RENDERIZADO DE PRODUCTOS ---
 function populateCategories() {
     categorySelect.innerHTML = '<option value="all">Todas las categorías</option>';
     
@@ -146,6 +140,12 @@ function renderProducts(reset = false) {
         const mainImage = `assets/${prod.imagenes[0]}`; 
         const tagsHtml = prod.tags.slice(0, 4).map(tag => `<span class="product-card__tag">${tag}</span>`).join('');
         
+        const macroCat = getMacroCategory(prod.categoria);
+        // Evita duplicación si la categoría original es igual a la macro-categoría
+        const displayCategory = macroCat.toLowerCase() === prod.categoria.toLowerCase() 
+            ? macroCat 
+            : `${macroCat} - ${prod.categoria}`;
+        
         const card = document.createElement('article');
         card.className = 'product-card';
         card.style.cursor = 'pointer'; 
@@ -162,7 +162,7 @@ function renderProducts(reset = false) {
                 ` : ''}
             </div>
             <div class="product-card__content">
-                <span class="product-card__category">${getMacroCategory(prod.categoria)} - ${prod.categoria}</span>
+                <span class="product-card__category">${displayCategory}</span>
                 <h3 class="product-card__title">${prod.titulo}</h3>
                 <p class="product-card__desc" title="Clic para ver más detalles">${prod.descripcion}</p>
                 <div class="product-card__tags">${tagsHtml}</div>
@@ -185,7 +185,6 @@ function renderProducts(reset = false) {
     }
 }
 
-// --- TRANSICIONES DE VISTA ---
 function showProductsView() {
     categoriesGrid.style.display = 'none';
     btnViewAll.style.display = 'none';
@@ -203,7 +202,6 @@ function showCategoriesView() {
     btnViewAll.style.display = 'inline-block';
 }
 
-// --- ALGORITMOS DE BÚSQUEDA INTELIGENTE ---
 const normalizeString = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 };
@@ -260,20 +258,23 @@ function filterCatalog() {
     renderProducts(true);
 }
 
-// --- UTILIDADES ---
 function generateWhatsAppLink(producto) {
     const text = `Hola House Battery. Me interesa cotizar este producto del catálogo:%0A%0A*Ref:* [${producto.id}] - ${producto.titulo}%0A%0A¿Tienen disponibilidad?`;
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
 }
 
-// --- LÓGICA DEL MODAL EXTENDIDO ---
 function openModal(producto) {
     currentGallery = producto.imagenes;
     currentImageIndex = 0;
     
+    const macroCat = getMacroCategory(producto.categoria);
+    const displayCategory = macroCat.toLowerCase() === producto.categoria.toLowerCase() 
+        ? macroCat 
+        : `${macroCat} - ${producto.categoria}`;
+
     modalTitle.textContent = producto.titulo;
     modalDescription.textContent = producto.descripcion;
-    modalCategory.textContent = `${getMacroCategory(producto.categoria)} - ${producto.categoria}`;
+    modalCategory.textContent = displayCategory;
     modalWhatsappBtn.href = generateWhatsAppLink(producto);
 
     updateModalView();
@@ -315,7 +316,6 @@ function prevImg() {
     updateModalView();
 }
 
-// --- EVENT LISTENERS ---
 function setupEventListeners() {
     btnViewAll.addEventListener('click', () => {
         categorySelect.value = 'all';
@@ -343,5 +343,4 @@ function setupEventListeners() {
     });
 }
 
-// Ejecutar
 init();
