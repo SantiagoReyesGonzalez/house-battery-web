@@ -306,9 +306,108 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </section>
+<section class="projects-carousel-section">
+    <div class="pc-header reveal">
+        <h2 class="pc-title">Proyectos <span>Estudiantiles</span></h2>
+        <p class="pc-desc">Kits de ensamble, robótica educativa y maquetas didácticas funcionales listas para tu aula o laboratorio.</p>
+    </div>
+
+    <div class="pc-wrapper reveal">
+        <button class="pc-nav-btn pc-nav-btn--prev" id="pcPrev" aria-label="Desplazar a la izquierda">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        
+        <button class="pc-nav-btn pc-nav-btn--next" id="pcNext" aria-label="Desplazar a la derecha">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+
+        <div class="pc-track" id="pcTrack">
+            <a href="proyectos-estudiantiles.html" class="pc-card">
+                <div class="pc-card__img-container">
+                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/carro-sensores-luz.webp" alt="Carro Seguidor de Línea" loading="lazy">
+                </div>
+                <div class="pc-card-content">
+                    <span class="pc-tag">Robótica</span>
+                    <h3>Carro Seguidor de Línea (Arduino)</h3>
+                    <p>Vehículo con tracción diferencial y sensores IR para seguimiento autónomo de trayectorias.</p>
+                </div>
+            </a>
+
+            <a href="proyectos-estudiantiles.html" class="pc-card">
+                <div class="pc-card__img-container">
+                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/ascensor.webp" alt="Ascensor Eléctrico" loading="lazy">
+                </div>
+                <div class="pc-card-content">
+                    <span class="pc-tag">Mecánica Básica</span>
+                    <h3>Ascensor Eléctrico con Poleas</h3>
+                    <p>Maqueta en madera balsa con motor DC y sistema de poleas para comprender la tracción mecánica.</p>
+                </div>
+            </a>
+
+            <a href="proyectos-estudiantiles.html" class="pc-card">
+                <div class="pc-card__img-container">
+                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/radio.webp" alt="Radio AM" loading="lazy">
+                </div>
+                <div class="pc-card-content">
+                    <span class="pc-tag">Telecomunicaciones</span>
+                    <h3>Radio AM Superheterodino</h3>
+                    <p>Receptor didáctico para estudiar radiofrecuencia con transformadores IF y antena de ferrita.</p>
+                </div>
+            </a>
+
+            <a href="proyectos-estudiantiles.html" class="pc-card">
+                <div class="pc-card__img-container">
+                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/locomotora-electronica.webp" alt="Locomotora Eléctrica" loading="lazy">
+                </div>
+                <div class="pc-card-content">
+                    <span class="pc-tag">Mecánica</span>
+                    <h3>Locomotora Eléctrica para Armar</h3>
+                    <p>Kit estructural en madera para experimentar la conversión de energía eléctrica en movimiento.</p>
+                </div>
+            </a>
+
+            <a href="proyectos-estudiantiles.html" class="pc-card">
+                <div class="pc-card__img-container">
+                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/semaforo-diodos.webp" alt="Semáforo de Diodos" loading="lazy">
+                </div>
+                <div class="pc-card-content">
+                    <span class="pc-tag">Lógica Digital</span>
+                    <h3>Semáforo de Doble Vía</h3>
+                    <p>Circuito secuencial basado en temporizadores para el control sincronizado de luces LED de tráfico.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="pc-actions reveal">
+        <a href="proyectos-estudiantiles.html" class="btn btn--engineer" style="padding: 1rem 2rem; font-size: 1.1rem; width: auto; display: inline-flex;">
+            Ver todos los proyectos a detalle
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('pcTrack');
+            const btnPrev = document.getElementById('pcPrev');
+            const btnNext = document.getElementById('pcNext');
+
+            if(track && btnPrev && btnNext) {
+                // Calcula cuánto desplazar (Ancho de la tarjeta + gap aproximadamente)
+                const scrollAmount = 340; 
+
+                btnNext.addEventListener('click', () => {
+                    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+
+                btnPrev.addEventListener('click', () => {
+                    track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</section>
 
         <section id="nosotros" class="about">
             <div class="about__container">
