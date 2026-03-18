@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta property="og:title" content="House Battery | Expertos en Baterías de Litio">
-    
     <meta property="og:description" content="Especialistas en baterías de litio para patinetas y herramientas. Venta y cambio de baterías para UPS en Bogotá.">
     <meta name="description" content="House Battery Bogotá: Venta de baterías para UPS, soldadura de punto y reparación de baterías para patinetas y herramientas eléctricas. Componentes originales.">    
     <meta property="og:image" content="https://housebattery.com.co/assets/img/favicon.webp">    
@@ -14,7 +12,9 @@
     <meta name="theme-color" content="#FFD600">
     <link rel="canonical" href="https://housebattery.com.co/" />
 
+    <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
+    
     <title>House Battery</title>
     <link rel="shortcut icon" href="assets/img/logo-icono.webp" type="image/x-icon">
     <meta name="keywords" content="reparación de baterías Bogotá, soldadura de punto baterías litio Bogotá, reparación batería patineta eléctrica, cambio batería UPS, empaquetado celdas 18650, reparación baterías herramientas, baterías recargables Bogotá, House Battery Bogotá">
@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="preload" as="image" href="assets/img/hero-01-workshop.webp">
+    <link rel="preload" as="image" href="assets/img/hero-01-workshop.webp" fetchpriority="high">
 
     <script type="application/ld+json">
     {
@@ -43,14 +43,7 @@
     },
     "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-        ],
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
         "opens": "09:00",
         "closes": "18:00"
     },
@@ -97,10 +90,10 @@
 <body>
 
     <header class="header">
-        <img class="header__logo" src="assets/img/logo-icono.webp" alt="Logo de house battery" width="60" height="60">
+        <img class="header__logo" src="assets/img/logo-icono.webp" alt="Logo de house battery" width="60" height="60" fetchpriority="high">
         <nav class="nav">
             <button class="nav__toggle" aria-label="Abrir menú">
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="30"  height="30"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
             </button>
             <ul class="nav__list">
                 <li class="nav__item"><a href="#inicio" class="nav__link">Inicio</a></li>
@@ -141,30 +134,22 @@
 
         <section class="brands-slider reveal">
             <h2 class="brands__title">Repuestos y Equipos Originales</h2>
-            
             <div class="brands-slider__track">
-                
-                <img src="assets/img/maxday-logo.webp" alt="Maxday" class="brands__img" width="171" height="50">
-                <img src="assets/img/eveready-logo.webp" alt="Eveready" class="brands__img" width="194" height="50">
-                <img src="assets/img/energizer-logo.webp" alt="Energizer" class="brands__img" width="134" height="50">
-                <img src="assets/img/beston-logo.webp" alt="Beston" class="brands__img" width="150" height="50">
-                <img src="assets/img/gp-batteries-logo.webp" alt="GP Batteries" class="brands__img" width="150" height="50">
-
-                <img src="assets/img/maxday-logo.webp" alt="Maxday" class="brands__img" width="171" height="50">
-                <img src="assets/img/eveready-logo.webp" alt="Eveready" class="brands__img" width="194" height="50">
-                <img src="assets/img/energizer-logo.webp" alt="Energizer" class="brands__img" width="134" height="50">
-                <img src="assets/img/beston-logo.webp" alt="Beston" class="brands__img" width="150" height="50">
-                <img src="assets/img/gp-batteries-logo.webp" alt="GP Batteries" class="brands__img" width="150" height="50">
-
-                <img src="assets/img/maxday-logo.webp" alt="Maxday" class="brands__img" width="171" height="50">
-                <img src="assets/img/eveready-logo.webp" alt="Eveready" class="brands__img" width="194" height="50">
-                <img src="assets/img/energizer-logo.webp" alt="Energizer" class="brands__img" width="134" height="50">
-                <img src="assets/img/beston-logo.webp" alt="Beston" class="brands__img" width="150" height="50">
-                <img src="assets/img/gp-batteries-logo.webp" alt="GP Batteries" class="brands__img" width="150" height="50">
-
-                
-                
-
+                <img src="assets/img/maxday-logo.webp" alt="Maxday" class="brands__img" width="171" height="50" loading="lazy">
+                <img src="assets/img/eveready-logo.webp" alt="Eveready" class="brands__img" width="194" height="50" loading="lazy">
+                <img src="assets/img/energizer-logo.webp" alt="Energizer" class="brands__img" width="134" height="50" loading="lazy">
+                <img src="assets/img/beston-logo.webp" alt="Beston" class="brands__img" width="150" height="50" loading="lazy">
+                <img src="assets/img/gp-batteries-logo.webp" alt="GP Batteries" class="brands__img" width="150" height="50" loading="lazy">
+                <img src="assets/img/maxday-logo.webp" alt="Maxday" class="brands__img" width="171" height="50" loading="lazy">
+                <img src="assets/img/eveready-logo.webp" alt="Eveready" class="brands__img" width="194" height="50" loading="lazy">
+                <img src="assets/img/energizer-logo.webp" alt="Energizer" class="brands__img" width="134" height="50" loading="lazy">
+                <img src="assets/img/beston-logo.webp" alt="Beston" class="brands__img" width="150" height="50" loading="lazy">
+                <img src="assets/img/gp-batteries-logo.webp" alt="GP Batteries" class="brands__img" width="150" height="50" loading="lazy">
+                <img src="assets/img/maxday-logo.webp" alt="Maxday" class="brands__img" width="171" height="50" loading="lazy">
+                <img src="assets/img/eveready-logo.webp" alt="Eveready" class="brands__img" width="194" height="50" loading="lazy">
+                <img src="assets/img/energizer-logo.webp" alt="Energizer" class="brands__img" width="134" height="50" loading="lazy">
+                <img src="assets/img/beston-logo.webp" alt="Beston" class="brands__img" width="150" height="50" loading="lazy">
+                <img src="assets/img/gp-batteries-logo.webp" alt="GP Batteries" class="brands__img" width="150" height="50" loading="lazy">
             </div>
         </section>
 
@@ -175,24 +160,13 @@
             </div>
 
             <div class="services__container">
-
                 <article class="service-card">
                     <div class="service-card__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 21l18 0" />
-                            <path d="M5 21v-14l8 -4v18" />
-                            <path d="M19 21v-10l-6 -4" />
-                            <path d="M9 9l0 .01" />
-                            <path d="M9 12l0 .01" />
-                            <path d="M9 15l0 .01" />
-                            <path d="M9 18l0 .01" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l18 0"/><path d="M5 21v-14l8 -4v18"/><path d="M19 21v-10l-6 -4"/><path d="M9 9l0 .01"/><path d="M9 12l0 .01"/><path d="M9 15l0 .01"/><path d="M9 18l0 .01"/></svg>
                     </div>
                     <h3 class="service-card__title">Suministro de Energía & UPS</h3>
                     <p class="service-card__desc">
-                        Venta y distribución de baterías de alta capacidad para sistemas de respaldo. Distribuidores autorizados
-                        de <strong>Netion</strong> y <strong>Movil Tronic</strong>.
+                        Venta y distribución de baterías de alta capacidad para sistemas de respaldo. Distribuidores autorizados de <strong>Netion</strong> y <strong>Movil Tronic</strong>.
                     </p>
                     <ul class="service-card__list">
                         <li>Baterías Secas / Gel</li>
@@ -204,20 +178,11 @@
                 <article class="service-card service-card--featured">
                     <span class="badge">Especialidad</span>
                     <div class="service-card__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2" />
-                            <path d="M7 10l0 4" />
-                            <path d="M10 10l0 4" />
-                            <path d="M13 10l0 4" />
-                            <path d="M16 10l0 4" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2"/><path d="M7 10l0 4"/><path d="M10 10l0 4"/><path d="M13 10l0 4"/><path d="M16 10l0 4"/></svg>
                     </div>
                     <h3 class="service-card__title">Laboratorio de Litio</h3>
                     <p class="service-card__desc">
-                        Fabricación y reconstrucción de baterías de Litio a medida. <strong>Sin intermediarios</strong>, todo se
-                        ensambla en nuestro taller profesional.
+                        Fabricación y reconstrucción de baterías de Litio a medida. <strong>Sin intermediarios</strong>, todo se ensambla en nuestro taller profesional.
                     </p>
                     <ul class="service-card__list">
                         <li>Scooters y E-Bikes</li>
@@ -228,18 +193,11 @@
 
                 <article class="service-card">
                     <div class="service-card__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
-                            <path d="M9 12l6 0" />
-                            <path d="M12 9l0 6" />
-                            <path d="M12 12l2.5 -2.5" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"/><path d="M9 12l6 0"/><path d="M12 9l0 6"/><path d="M12 12l2.5 -2.5"/></svg>
                     </div>
                     <h3 class="service-card__title">Tienda Técnica</h3>
                     <p class="service-card__desc">
-                        Venta de equipos de medición de alta precisión y componentes electrónicos para estudiantes y técnicos
-                        profesionales.
+                        Venta de equipos de medición de alta precisión y componentes electrónicos para estudiantes y técnicos profesionales.
                     </p>
                     <ul class="service-card__list">
                         <li>Multímetros (Fluke/UNI-T)</li>
@@ -247,7 +205,6 @@
                         <li>Asesoría de Proyectos</li>
                     </ul>
                 </article>
-
             </div>
         </section>
 
@@ -255,11 +212,9 @@
             <div class="catalog-promo__container reveal">
                 <div class="catalog-promo__content">
                     <span class="catalog-promo__tag">NUEVO</span>
-                    <h2 class="catalog-promo__title">Explora Nuestro <br><span class="text-highlight">Catálogo Digital</span>
-                    </h2>
+                    <h2 class="catalog-promo__title">Explora Nuestro <br><span class="text-highlight">Catálogo Digital</span></h2>
                     <p class="catalog-promo__desc">
-                        Más de 230 referencias en stock. Encuentra rápidamente celdas de litio, módulos BMS, baterías VRLA de
-                        ciclo profundo, herramientas profesionales y accesorios con especificaciones técnicas detalladas.
+                        Más de 230 referencias en stock. Encuentra rápidamente celdas de litio, módulos BMS, baterías VRLA de ciclo profundo, herramientas profesionales y accesorios con especificaciones técnicas detalladas.
                     </p>
                     <div class="catalog-promo__features">
                         <span>⚡ Búsqueda en tiempo real</span>
@@ -271,27 +226,23 @@
         
                 <div class="catalog-promo__visual">
                     <div class="catalog-promo__card-mockup">
-                        <img src="assets/img/hero-02-custompack.webp" alt="Catálogo de Baterías House Battery"
-                            class="catalog-promo__img">
+                        <img src="assets/img/hero-02-custompack.webp" alt="Catálogo de Baterías House Battery" class="catalog-promo__img" width="550" height="350" loading="lazy">
                         <div class="catalog-promo__badge">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                style="vertical-align: middle; margin-right: 5px;">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 5px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                             Stock Actualizado
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         <section id="ingenieria" class="engineer-corner">
             <div class="engineer-container reveal">
-
                 <div class="engineer-visual">
                     <div class="blueprint-box">
                         <div class="blueprint-scanline"></div>
-                            <img src="assets/img/proyecto-estudiantil-arduino-litio.webp" alt="Prototipo electrónico con Arduino y Litio" class="blueprint-img" width="354" height="354">                        <div class="blueprint-data">
+                        <img src="assets/img/proyecto-estudiantil-arduino-litio.webp" alt="Prototipo electrónico con Arduino y Litio" class="blueprint-img" width="354" height="354" loading="lazy">
+                        <div class="blueprint-data">
                             <span>SYS_CHK: OK</span>
                             <span>PWR: 100%</span>
                         </div>
@@ -300,202 +251,127 @@
 
                 <div class="engineer-content">
                     <div class="engineer-badge">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path
-                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
-                            </path>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                         Ingeniería Aplicada
                     </div>
                     <h2 class="engineer-title">Proyectos Estudiantiles</h2>
-
                     <blockquote class="engineer-lead">
-                        "Las grandes revoluciones en energía y tecnología al servicio de la humanidad... empiezan con un
-                        proyecto en el aula. Nosotros te damos la energía para hacerlo realidad."
+                        "Las grandes revoluciones en energía y tecnología al servicio de la humanidad... empiezan con un proyecto en el aula. Nosotros te damos la energía para hacerlo realidad."
                     </blockquote>
-
                     <p class="engineer-text">
-                        ¿Estás atascado con tu proyecto de universidad o colegio? Te brindamos asesoría técnica, componentes y
-                        ensambles para que tu idea funcione a la perfección:
+                        ¿Estás atascado con tu proyecto de universidad o colegio? Te brindamos asesoría técnica, componentes y ensambles para que tu idea funcione a la perfección:
                     </p>
-
                     <ul class="engineer-list">
                         <li>
-                            <div class="engineer-list__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                    stroke="#00aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="11" width="18" height="10" rx="2"></rect>
-                                    <circle cx="12" cy="5" r="2"></circle>
-                                    <path d="M12 7v4"></path>
-                                    <line x1="8" y1="16" x2="8" y2="16"></line>
-                                    <line x1="16" y1="16" x2="16" y2="16"></line>
-                                </svg>
-                            </div>
-                            <div class="engineer-list__text">
-                                <strong>Robótica y Automatización:</strong> Sensores, motores y módulos para Arduino o Raspberry
-                                Pi.
-                            </div>
+                            <div class="engineer-list__icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg></div>
+                            <div class="engineer-list__text"><strong>Robótica y Automatización:</strong> Sensores, motores y módulos para Arduino o Raspberry Pi.</div>
                         </li>
                         <li>
-                            <div class="engineer-list__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                    stroke="#00aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="6" y="6" width="12" height="14" rx="2" ry="2"></rect>
-                                    <line x1="9" y1="2" x2="9" y2="6"></line>
-                                    <line x1="15" y1="2" x2="15" y2="6"></line>
-                                    <line x1="12" y1="11" x2="12" y2="15"></line>
-                                    <line x1="10" y1="13" x2="14" y2="13"></line>
-                                </svg>
-                            </div>
-                            <div class="engineer-list__text">
-                                <strong>Packs de Litio a Medida:</strong> Energía portátil exacta para carritos, drones o
-                                prototipos IoT.
-                            </div>
+                            <div class="engineer-list__icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="14" rx="2" ry="2"></rect><line x1="9" y1="2" x2="9" y2="6"></line><line x1="15" y1="2" x2="15" y2="6"></line><line x1="12" y1="11" x2="12" y2="15"></line><line x1="10" y1="13" x2="14" y2="13"></line></svg></div>
+                            <div class="engineer-list__text"><strong>Packs de Litio a Medida:</strong> Energía portátil exacta para carritos, drones o prototipos IoT.</div>
                         </li>
                         <li>
-                            <div class="engineer-list__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                    stroke="#00aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="12" y1="16" x2="12" y2="12"></line>
-                                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                                </svg>
-                            </div>
-                            <div class="engineer-list__text">
-                                <strong>Asesoría Técnica:</strong> Te explicamos cómo funciona para que domines tu sustentación.
-                            </div>
+                            <div class="engineer-list__icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+                            <div class="engineer-list__text"><strong>Asesoría Técnica:</strong> Te explicamos cómo funciona para que domines tu sustentación.</div>
                         </li>
                     </ul>
-
                     <div class="engineer-cta">
-                        <a href="https://wa.me/573138019357?text=Hola%20House%20Battery,%20tengo%20un%20proyecto%20estudiantil%20y%20necesito%20ayuda%20con..."
-                            class="btn btn--engineer" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                style="margin-right: 8px; vertical-align: text-bottom;">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                            </svg>
+                        <a href="https://wa.me/573138019357?text=Hola%20House%20Battery,%20tengo%20un%20proyecto%20estudiantil%20y%20necesito%20ayuda%20con..." class="btn btn--engineer" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: text-bottom;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                             Cotizar mi Proyecto Estudiantil
                         </a>
                     </div>
                 </div>
             </div>
         </section>
-<section class="projects-carousel-section">
-    <div class="pc-header reveal">
-        <h2 class="pc-title">Proyectos <span>Estudiantiles</span></h2>
-        <p class="pc-desc">Kits de ensamble, robótica educativa y maquetas didácticas funcionales listas para tu aula o laboratorio.</p>
-    </div>
 
-    <div class="pc-wrapper reveal">
-        <button class="pc-nav-btn pc-nav-btn--prev" id="pcPrev" aria-label="Desplazar a la izquierda">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        
-        <button class="pc-nav-btn pc-nav-btn--next" id="pcNext" aria-label="Desplazar a la derecha">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
+        <section class="projects-carousel-section">
+            <div class="pc-header reveal">
+                <h2 class="pc-title">Proyectos <span>Estudiantiles</span></h2>
+                <p class="pc-desc">Kits de ensamble, robótica educativa y maquetas didácticas funcionales listas para tu aula o laboratorio.</p>
+            </div>
 
-        <div class="pc-track" id="pcTrack">
-            <a href="proyectos-estudiantiles.html" class="pc-card">
-                <div class="pc-card__img-container">
-                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/carro-sensores-luz.webp" alt="Carro Seguidor de Línea" loading="lazy">
+            <div class="pc-wrapper reveal">
+                <button class="pc-nav-btn pc-nav-btn--prev" id="pcPrev" aria-label="Desplazar a la izquierda">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="pc-nav-btn pc-nav-btn--next" id="pcNext" aria-label="Desplazar a la derecha">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+
+                <div class="pc-track" id="pcTrack">
+                    <a href="proyectos-estudiantiles.html" class="pc-card">
+                        <div class="pc-card__img-container">
+                            <img src="assets/img/catalogo/Proyectos_Estudiantiles/carro-sensores-luz.webp" alt="Carro Seguidor de Línea" width="320" height="220" loading="lazy">
+                        </div>
+                        <div class="pc-card-content">
+                            <span class="pc-tag">Robótica</span>
+                            <h3>Carro Seguidor de Línea (Arduino)</h3>
+                            <p>Vehículo con tracción diferencial y sensores IR para seguimiento autónomo de trayectorias.</p>
+                        </div>
+                    </a>
+
+                    <a href="proyectos-estudiantiles.html" class="pc-card">
+                        <div class="pc-card__img-container">
+                            <img src="assets/img/catalogo/Proyectos_Estudiantiles/ascensor.webp" alt="Ascensor Eléctrico" width="320" height="220" loading="lazy">
+                        </div>
+                        <div class="pc-card-content">
+                            <span class="pc-tag">Mecánica Básica</span>
+                            <h3>Ascensor Eléctrico con Poleas</h3>
+                            <p>Maqueta en madera balsa con motor DC y sistema de poleas para comprender la tracción mecánica.</p>
+                        </div>
+                    </a>
+
+                    <a href="proyectos-estudiantiles.html" class="pc-card">
+                        <div class="pc-card__img-container">
+                            <img src="assets/img/catalogo/Proyectos_Estudiantiles/radio.webp" alt="Radio AM" width="320" height="220" loading="lazy">
+                        </div>
+                        <div class="pc-card-content">
+                            <span class="pc-tag">Telecomunicaciones</span>
+                            <h3>Radio AM Superheterodino</h3>
+                            <p>Receptor didáctico para estudiar radiofrecuencia con transformadores IF y antena de ferrita.</p>
+                        </div>
+                    </a>
+
+                    <a href="proyectos-estudiantiles.html" class="pc-card">
+                        <div class="pc-card__img-container">
+                            <img src="assets/img/catalogo/Proyectos_Estudiantiles/locomotora-electronica.webp" alt="Locomotora Eléctrica" width="320" height="220" loading="lazy">
+                        </div>
+                        <div class="pc-card-content">
+                            <span class="pc-tag">Mecánica</span>
+                            <h3>Locomotora Eléctrica para Armar</h3>
+                            <p>Kit estructural en madera para experimentar la conversión de energía eléctrica en movimiento.</p>
+                        </div>
+                    </a>
+
+                    <a href="proyectos-estudiantiles.html" class="pc-card">
+                        <div class="pc-card__img-container">
+                            <img src="assets/img/catalogo/Proyectos_Estudiantiles/semaforo-diodos.webp" alt="Semáforo de Diodos" width="320" height="220" loading="lazy">
+                        </div>
+                        <div class="pc-card-content">
+                            <span class="pc-tag">Lógica Digital</span>
+                            <h3>Semáforo de Doble Vía</h3>
+                            <p>Circuito secuencial basado en temporizadores para el control sincronizado de luces LED de tráfico.</p>
+                        </div>
+                    </a>
                 </div>
-                <div class="pc-card-content">
-                    <span class="pc-tag">Robótica</span>
-                    <h3>Carro Seguidor de Línea (Arduino)</h3>
-                    <p>Vehículo con tracción diferencial y sensores IR para seguimiento autónomo de trayectorias.</p>
-                </div>
-            </a>
+            </div>
 
-            <a href="proyectos-estudiantiles.html" class="pc-card">
-                <div class="pc-card__img-container">
-                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/ascensor.webp" alt="Ascensor Eléctrico" loading="lazy">
-                </div>
-                <div class="pc-card-content">
-                    <span class="pc-tag">Mecánica Básica</span>
-                    <h3>Ascensor Eléctrico con Poleas</h3>
-                    <p>Maqueta en madera balsa con motor DC y sistema de poleas para comprender la tracción mecánica.</p>
-                </div>
-            </a>
-
-            <a href="proyectos-estudiantiles.html" class="pc-card">
-                <div class="pc-card__img-container">
-                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/radio.webp" alt="Radio AM" loading="lazy">
-                </div>
-                <div class="pc-card-content">
-                    <span class="pc-tag">Telecomunicaciones</span>
-                    <h3>Radio AM Superheterodino</h3>
-                    <p>Receptor didáctico para estudiar radiofrecuencia con transformadores IF y antena de ferrita.</p>
-                </div>
-            </a>
-
-            <a href="proyectos-estudiantiles.html" class="pc-card">
-                <div class="pc-card__img-container">
-                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/locomotora-electronica.webp" alt="Locomotora Eléctrica" loading="lazy">
-                </div>
-                <div class="pc-card-content">
-                    <span class="pc-tag">Mecánica</span>
-                    <h3>Locomotora Eléctrica para Armar</h3>
-                    <p>Kit estructural en madera para experimentar la conversión de energía eléctrica en movimiento.</p>
-                </div>
-            </a>
-
-            <a href="proyectos-estudiantiles.html" class="pc-card">
-                <div class="pc-card__img-container">
-                    <img src="assets/img/catalogo/Proyectos_Estudiantiles/semaforo-diodos.webp" alt="Semáforo de Diodos" loading="lazy">
-                </div>
-                <div class="pc-card-content">
-                    <span class="pc-tag">Lógica Digital</span>
-                    <h3>Semáforo de Doble Vía</h3>
-                    <p>Circuito secuencial basado en temporizadores para el control sincronizado de luces LED de tráfico.</p>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="pc-actions reveal">
-        <a href="proyectos-estudiantiles.html" class="btn btn--engineer" style="padding: 1rem 2rem; font-size: 1.1rem; width: auto; display: inline-flex;">
-            Ver todos los proyectos a detalle
-        </a>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const track = document.getElementById('pcTrack');
-            const btnPrev = document.getElementById('pcPrev');
-            const btnNext = document.getElementById('pcNext');
-
-            if(track && btnPrev && btnNext) {
-                // Calcula cuánto desplazar (Ancho de la tarjeta + gap aproximadamente)
-                const scrollAmount = 340; 
-
-                btnNext.addEventListener('click', () => {
-                    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                });
-
-                btnPrev.addEventListener('click', () => {
-                    track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                });
-            }
-        });
-    </script>
-</section>
+            <div class="pc-actions reveal">
+                <a href="proyectos-estudiantiles.html" class="btn btn--engineer" style="padding: 1rem 2rem; font-size: 1.1rem; width: auto; display: inline-flex;">
+                    Ver todos los proyectos a detalle
+                </a>
+            </div>
+        </section>
 
         <section id="nosotros" class="about">
             <div class="about__container">
-
                 <div class="about__visual reveal">
                     <figure class="about__image-wrapper">
-                        <img src="assets/img/taller-soldadura-punto-house-battery.webp" alt="Máquina de soldadura de punto de alta frecuencia House Battery" class="about__img" width="378" height="563">
+                        <img src="assets/img/taller-soldadura-punto-house-battery.webp" alt="Máquina de soldadura de punto de alta frecuencia House Battery" class="about__img" width="378" height="563" loading="lazy">
                         <div class="about__floating-badge">
                             <div class="badge-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                             </div>
                             <div class="badge-info">
                                 <span class="badge-title">Garantía Real</span>
@@ -508,7 +384,6 @@
                 <div class="about__content reveal">
                     <span class="about__tag">Conócenos</span>
                     <h2 class="about__title">TU PROYECTO,<br>EN <span class="text-highlight">MANOS EXPERTAS.</span></h2>
-
                     <p class="about__text">
                         A diferencia de otros locales en la Calle 21, <strong>en House Battery no somos intermediarios</strong>.
                         Contamos con maquinaria de <strong>soldadura de punto de alta frecuencia</strong> y banco de pruebas
@@ -518,11 +393,7 @@
                     <div class="about__features">
                         <div class="feature-card">
                             <div class="feature-card__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                             </div>
                             <div class="feature-card__text">
                                 <strong>Sin Terceros</strong>
@@ -532,12 +403,7 @@
 
                         <div class="feature-card">
                             <div class="feature-card__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="6" y="6" width="12" height="12" rx="2" ry="2"></rect>
-                                    <path d="M6 12h12"></path>
-                                    <path d="M12 6v12"></path>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2" ry="2"></rect><path d="M6 12h12"></path><path d="M12 6v12"></path></svg>
                             </div>
                             <div class="feature-card__text">
                                 <strong>Celdas 100% Originales</strong>
@@ -547,12 +413,7 @@
 
                         <div class="feature-card">
                             <div class="feature-card__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
-                                    </path>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
                             </div>
                             <div class="feature-card__text">
                                 <strong>Asesoría de Ingeniería</strong>
@@ -560,13 +421,10 @@
                             </div>
                         </div>
                     </div>
-
                     <a href="#contacto" class="btn btn--primary">Hablar con un Técnico</a>
                 </div>
-
             </div>
         </section>
-
 
         <section id="proceso" class="process-section">
             <div class="process-container reveal">
@@ -579,29 +437,22 @@
                     <div class="process-step">
                         <div class="process-step__number">01</div>
                         <h3 class="process-step__title">Recepción & Diagnóstico</h3>
-                        <p class="process-step__desc">Medimos el voltaje, resistencia interna y estado del BMS de tu batería
-                            actual para identificar la falla real sin suposiciones.</p>
+                        <p class="process-step__desc">Medimos el voltaje, resistencia interna y estado del BMS de tu batería actual para identificar la falla real sin suposiciones.</p>
                     </div>
-        
                     <div class="process-step">
                         <div class="process-step__number">02</div>
                         <h3 class="process-step__title">Cotización Exacta</h3>
-                        <p class="process-step__desc">Te presentamos un informe técnico y el presupuesto exacto utilizando
-                            celdas 100% originales (Samsung, LG, Panasonic).</p>
+                        <p class="process-step__desc">Te presentamos un informe técnico y el presupuesto exacto utilizando celdas 100% originales (Samsung, LG, Panasonic).</p>
                     </div>
-        
                     <div class="process-step">
                         <div class="process-step__number">03</div>
                         <h3 class="process-step__title">Soldadura & Ensamble</h3>
-                        <p class="process-step__desc">Utilizamos soldadura de punto de alta frecuencia con tiras de níquel puro
-                            para garantizar conductividad y evitar recalentamientos.</p>
+                        <p class="process-step__desc">Utilizamos soldadura de punto de alta frecuencia con tiras de níquel puro para garantizar conductividad y evitar recalentamientos.</p>
                     </div>
-        
                     <div class="process-step">
                         <div class="process-step__number">04</div>
                         <h3 class="process-step__title">Pruebas & Entrega</h3>
-                        <p class="process-step__desc">Sometemos el pack a ciclos de carga/descarga en nuestro banco de pruebas.
-                            Se entrega termocontraído y con garantía por escrito.</p>
+                        <p class="process-step__desc">Sometemos el pack a ciclos de carga/descarga en nuestro banco de pruebas. Se entrega termocontraído y con garantía por escrito.</p>
                     </div>
                 </div>
             </div>
@@ -628,7 +479,6 @@
                             </div>
                         </div>
                     </article>
-
                     <article class="testimonial-card">
                         <div class="testimonial-card__stars">★★★★★</div>
                         <p class="testimonial-card__text">
@@ -642,12 +492,10 @@
                             </div>
                         </div>
                     </article>
-
                     <article class="testimonial-card">
                         <div class="testimonial-card__stars">★★★★★</div>
                         <p class="testimonial-card__text">
-                            "El mejor lugar en Bogotá para soldadura de punto y baterías. Precios justos y componentes originales. El cambio
-                            de batería de mi UPS fue impecable y rápido."
+                            "El mejor lugar en Bogotá para soldadura de punto y baterías. Precios justos y componentes originales. El cambio de batería de mi UPS fue impecable y rápido."
                         </p>
                         <div class="testimonial-card__author">
                             <div class="testimonial-card__avatar">JP</div>
@@ -660,7 +508,7 @@
                 </div>
 
                 <div class="testimonials__cta">
-                    <a href="https://g.page/r/CVl7srTlz2W5EBM/review" target="_blank" class="testimonials__link">
+                    <a href="https://g.page/r/CVl7srTlz2W5EBM/review" target="_blank" rel="noopener" class="testimonials__link">
                         ¿Te gusta nuestro trabajo? Califícanos en Google Maps →
                     </a>
                 </div>
@@ -681,21 +529,18 @@
                             <p>El diagnóstico inicial tarda 24 horas. Según la complejidad (rebalanceo o cambio de celdas), la entrega final se realiza en un promedio de 2 a 4 días hábiles.</p>
                         </div>
                     </details>
-
                     <details class="faq-item">
                         <summary class="faq-question">¿Tienen garantía los trabajos de soldadura de punto?</summary>
                         <div class="faq-answer">
                             <p>Sí. Todos nuestros ensambles y reconstrucciones de packs de litio cuentan con una garantía de 3 a 6 meses por defectos de fabricación y puntos de soldadura.</p>
                         </div>
                     </details>
-
                     <details class="faq-item">
                         <summary class="faq-question">¿Realizan envíos de baterías a otras ciudades de Colombia?</summary>
                         <div class="faq-answer">
                             <p>Sí, realizamos envíos nacionales siguiendo los protocolos de seguridad para el transporte de celdas de litio. El costo del envío corre por cuenta del cliente.</p>
                         </div>
                     </details>
-
                     <details class="faq-item">
                         <summary class="faq-question">¿Puedo llevar mi propio BMS para el ensamble?</summary>
                         <div class="faq-answer">
@@ -708,9 +553,7 @@
 
         <section id="contacto" class="contact reveal">
             <h2 class="contact__title">Visítanos o Escríbenos</h2>
-            
             <div class="contact__wrapper">
-                
                 <form action="https://formspree.io/f/maqdqoqy" id="contactForm" method="POST" class="contact__form">
                     <input type="hidden" name="_subject" value="¡Nuevo mensaje de House Battery Web!">
                     <input type="hidden" name="_language" value="es">
@@ -720,17 +563,14 @@
                         <label for="nombre" class="form-group__label">Nombre</label>
                         <input type="text" id="nombre" name="nombre" class="form-group__input" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="telefono" class="form-group__label">Teléfono</label>
                         <input type="tel" id="telefono" name="telefono" class="form-group__input" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="correo" class="form-group__label">Correo</label>
                         <input type="email" id="correo" name="correo" class="form-group__input" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="mensaje" class="form-group__label">Mensaje</label>
                         <textarea name="mensaje" id="mensaje" class="form-group__textarea" required></textarea>
@@ -741,43 +581,29 @@
                 </form>
 
                 <div class="contact__map">
-                    <iframe title="Mapa de ubicación de House Battery en Bogotá" src="https://www.google.com/maps/embed?pb=!3m2!1ses!2sco!4v1771102924779!5m2!1s…" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                
+                    <iframe title="Mapa de ubicación de House Battery en Bogotá" src="https://maps.google.com/maps?q=Calle%2021%20No.%208-58,%20Bogot%C3%A1&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                
                 </div>
-
             </div>
         </section>
-
-        
-
     </main>
     
     <footer class="footer">
         <div class="footer__container reveal">
-    
             <div class="footer__brand">
-                <img src="assets/img/logo-icono.webp" alt="Logo House Battery" class="footer__logo-img" loading="lazy" width="50" height="50">                <h2 class="footer__logo">HOUSE BATTERY</h2>
+                <img src="assets/img/logo-icono.webp" alt="Logo House Battery" class="footer__logo-img" loading="lazy" width="50" height="50">                
+                <h2 class="footer__logo">HOUSE BATTERY</h2>
                 <p class="footer__desc">
-                    Expertos en energía portátil. Laboratorio especializado en litio, soldadura de punto y distribución de
-                    repuestos originales en Bogotá.
+                    Expertos en energía portátil. Laboratorio especializado en litio, soldadura de punto y distribución de repuestos originales en Bogotá.
                 </p>
                 <div class="footer__socials">
-                    <a href="#" aria-label="Facebook" class="social-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
+                    <a href="#" aria-label="Facebook" class="social-link" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     </a>
-                    <a href="#" aria-label="Instagram" class="social-link" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
+                    <a href="#" aria-label="Instagram" class="social-link" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </a>
                 </div>
             </div>
-    
             <div class="footer__links">
                 <h3 class="footer__heading">Navegación</h3>
                 <ul class="footer__nav">
@@ -788,48 +614,28 @@
                     <li><a href="#contacto">Contacto y Ubicación</a></li>
                 </ul>
             </div>
-    
             <div class="footer__contact">
                 <h3 class="footer__heading">Atención al Cliente</h3>
                 <ul class="footer__info">
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                         <span>Calle 21 No. 8-58, Local 115<br>Bogotá D.C., Colombia</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                            </path>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                         <span>313 801 9357 / 320 266 0295</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                         <span>housebatterygpd@gmail.com</span>
                     </li>
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                         <span>Lun - Sáb: 9:00 AM - 6:00 PM</span>
                     </li>
                 </ul>
             </div>
-    
         </div>
-    
         <div class="footer__bottom">
             <div class="footer__bottom-container">
                 <p>© 2026 House Battery. Todos los derechos reservados.</p>
@@ -842,11 +648,13 @@
             </div>
         </div>
     </footer>
-    <a href="https://wa.me/573138019357?text=Hola%20House%20Battery,%20quisiera%20cotizar%20un%20servicio..." class="btn-whatsapp" target="_blank" aria-label="Chat en WhatsApp">
+
+    <a href="https://wa.me/573138019357?text=Hola%20House%20Battery,%20quisiera%20cotizar%20un%20servicio..." class="btn-whatsapp" target="_blank" rel="noopener" aria-label="Chat en WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
         </svg>
     </a>
-    <script src="js/main.js"></script>
+
+    <script src="js/main.js" defer></script>
 </body>
 </html>
