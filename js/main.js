@@ -6,7 +6,6 @@ const navToggle = document.querySelector('.nav__toggle');
 const navList = document.querySelector('.nav__list');
 
 function actualizarHeader() {
-    // Usar requestAnimationFrame para evitar layout thrashing
     window.requestAnimationFrame(() => {
         const menuAbierto = navList && navList.classList.contains('nav__list--visible');
         const usuarioHizoScroll = window.scrollY > 50;
@@ -19,14 +18,15 @@ function actualizarHeader() {
     });
 }
 
-// Evento Scroll optimizado pasivo
+// Scroll optimizado (pasivo)
 window.addEventListener('scroll', actualizarHeader, { passive: true });
 
-// Evento Menú
-if (navToggle) {
+// Evento Menú (Click)
+if (navToggle && navList) {
     navToggle.addEventListener('click', () => {
         navList.classList.toggle('nav__list--visible');
         actualizarHeader();
+
         if (navList.classList.contains('nav__list--visible')) {
             navToggle.setAttribute('aria-label', 'Cerrar menú');
         } else {
@@ -54,7 +54,7 @@ const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            obs.unobserve(entry.target); // Dejar de observar una vez animado mejora rendimiento
+            obs.unobserve(entry.target); 
         }
     });
 }, { threshold: 0.1 });
@@ -97,21 +97,64 @@ if (contactForm) {
                 formStatus.classList.add('error');
             }
         } catch (error) {
-            formStatus.textContent = "Ups! Hubo un problema al enviar su formulario.";
+            formStatus.textContent = "Error de conexión. Intenta de nuevo.";
             formStatus.classList.add('error');
         }
     });
 }
 
 /* =========================================
-   HERO SLIDER AUTOMÁTICO (Intervalo: 5s)
+   5. CALCULADORA DE BATERÍAS
+   ========================================= */
+const btnCalcular = document.getElementById('btnCalcular');
+const inputVoltaje = document.getElementById('voltage');
+const inputCapacidad = document.getElementById('capacity');
+const resultadoConfig = document.getElementById('configResult');
+const resultadoCeldas = document.getElementById('totalCellsResult');
+const btnCotizarCalc = document.getElementById('btnCotizarCalc');
+
+if (btnCalcular) {
+    btnCalcular.addEventListener('click', () => {
+        const voltajeDeseado = parseInt(inputVoltaje.value);
+        const capacidadDeseada = parseFloat(inputCapacidad.value);
+
+        if (!capacidadDeseada || capacidadDeseada <= 0) {
+            alert("Por favor, ingresa un Amperaje válido (Ej: 10)");
+            return;
+        }
+
+        const voltajeCelda = 3.6; 
+        const amperajeCelda = 2.5; 
+
+        const celdasSerie = Math.ceil(voltajeDeseado / voltajeCelda);
+        const celdasParalelo = Math.ceil(capacidadDeseada / amperajeCelda);
+        const totalCeldas = celdasSerie * celdasParalelo;
+
+        resultadoConfig.innerText = `${celdasSerie}S${celdasParalelo}P`; 
+        resultadoCeldas.innerText = totalCeldas;
+        
+        resultadoCeldas.style.transform = "scale(1.2)";
+        setTimeout(() => resultadoCeldas.style.transform = "scale(1)", 200);
+
+        if (btnCotizarCalc) {
+            const mensaje = `Hola House Battery, usé su calculadora web. Me interesa armar un pack de Litio: Configuración ${celdasSerie}S${celdasParalelo}P con ${totalCeldas} celdas en total. ¿Qué precio tendría?`;
+            const telefono = "573138019357"; 
+            
+            btnCotizarCalc.href = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+            btnCotizarCalc.style.display = 'block'; 
+        }
+    });
+}
+
+/* =========================================
+   6. HERO SLIDER AUTOMÁTICO (Intervalo: 5s)
    ========================================= */
 document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('.hero-slide');
-    const intervalTime = 5000;
+    const intervalTime = 5000; 
     let currentSlide = 0;
 
-    if (slides.length === 0) return;
+    if (slides.length <= 1) return;
 
     function nextSlide() {
         window.requestAnimationFrame(() => {
@@ -120,9 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
             slides[currentSlide].classList.add('active');
         });
     }
-    
-    // Iniciar slider solo si hay múltiples slides
-    if(slides.length > 1) {
-        setInterval(nextSlide, intervalTime);
-    }
+
+    setInterval(nextSlide, intervalTime);
 });
