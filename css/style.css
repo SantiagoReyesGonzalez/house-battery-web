@@ -2465,3 +2465,54 @@ button, input, select, textarea {
     text-align: center;
     margin-top: var(--space-md);
 }
+
+/* =========================================
+   20. OPTIMIZACIÓN MÓVIL (RESPONSIVE POLISH)
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Carrusel fluido: muestra un fragmento de la siguiente tarjeta */
+    .pc-card {
+        flex: 0 0 85vw; 
+        max-width: 320px;
+    }
+    
+    /* 2. Textos principales más equilibrados */
+    .hero__title {
+        font-size: 2.2rem;
+    }
+    .catalog-promo__title {
+        font-size: 2.2rem;
+    }
+    
+    /* 3. Botón de WhatsApp menos invasivo en pantallas pequeñas */
+    .btn-whatsapp {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    .btn-whatsapp svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* 4. Modal a pantalla completa tipo "App" en celulares */
+    .modal__content {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+        border-radius: 0; 
+        padding: 40px 15px 15px 15px; /* Espacio arriba para la X de cerrar */
+    }
+    .modal__close {
+        top: 10px;
+        right: 10px;
+        background: var(--neutral-900);
+    }
+    .modal__slider {
+        height: 250px; /* Foto más compacta para dar espacio al texto */
+    }
+    .modal__info {
+        padding: 10px 0;
+    }
+}
