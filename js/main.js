@@ -18,15 +18,12 @@ function actualizarHeader() {
     });
 }
 
-// Scroll optimizado (pasivo)
 window.addEventListener('scroll', actualizarHeader, { passive: true });
 
-// Evento Menú (Click)
 if (navToggle && navList) {
     navToggle.addEventListener('click', () => {
         navList.classList.toggle('nav__list--visible');
         actualizarHeader();
-
         if (navList.classList.contains('nav__list--visible')) {
             navToggle.setAttribute('aria-label', 'Cerrar menú');
         } else {
@@ -48,7 +45,7 @@ links.forEach(link => {
 });
 
 /* =========================================
-   3. ANIMACIÓN AL HACER SCROLL (Intersection Observer)
+   3. ANIMACIÓN AL HACER SCROLL
    ========================================= */
 const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
@@ -147,8 +144,9 @@ if (btnCalcular) {
 }
 
 /* =========================================
-   6. HERO SLIDER AUTOMÁTICO (Intervalo: 5s)
+   6. HERO SLIDER AUTOMÁTICO & LAZY LOAD
    ========================================= */
+// 1. Inicializar rotación
 document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('.hero-slide');
     const intervalTime = 5000; 
@@ -165,4 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     setInterval(nextSlide, intervalTime);
+});
+
+// 2. Carga diferida de imágenes pesadas al terminar de cargar la web
+window.addEventListener('load', () => {
+    const lazySlides = document.querySelectorAll('.hero-slide[data-bg]');
+    lazySlides.forEach(slide => {
+        slide.style.backgroundImage = `url('${slide.getAttribute('data-bg')}')`;
+        slide.removeAttribute('data-bg');
+    });
 });
